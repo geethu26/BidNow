@@ -1,228 +1,362 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BidNow - Online Auction Platform</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
     <style>
-        :root {
-            --primary-color: #007bff;
-            --secondary-color: #6c757d;
-            --success-color: #28a745;
-            --danger-color: #dc3545;
-            --warning-color: #ffc107;
-        }
+      :root {
+        --primary-color: #007bff;
+        --secondary-color: #6c757d;
+        --success-color: #28a745;
+        --danger-color: #dc3545;
+        --warning-color: #ffc107;
+      }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-        }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+      }
+      .navbar-brand {
+        font-weight: bold;
+        font-size: 1.8rem;
+        color: var(--primary-color) !important;
+      }
 
-        .hero-section {
-            background-image: url('Auction2.jpg');
-            background-size:cover; 
-            background-position: center;  
-            background-repeat: no-repeat;
-            color: white;
-            padding: 100px 0;
-            text-align: center;
-        }
+      .hero-section {
+        background-image: url("Auction2.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        color: white;
+        padding: 100px 0;
+        text-align: center;
+      }
 
-        .hero-section h1 {
-            font-size: 3.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
+      .hero-section h1 {
+        font-size: 3.5rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
 
-        .hero-section p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-        }
+      .hero-section p {
+        font-size: 1.3rem;
+        margin-bottom: 2rem;
+      }
 
-        .category-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            border: none;
-            border-radius: 15px;
-            overflow: hidden;
-        }
-        .btn-custom {
-            border-radius: 25px;
-            padding: 12px 30px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-        }
+      .category-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+        border: none;
+        border-radius: 15px;
+        overflow: hidden;
+      }
+      .btn-custom {
+        border-radius: 25px;
+        padding: 12px 30px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+      }
 
-        .btn-primary-custom {
-            background: linear-gradient(45deg, var(--primary-color), #0056b3);
-            border: none;
-            color: white;
-        }
+      .btn-primary-custom {
+        background: linear-gradient(45deg, var(--primary-color), #0056b3);
+        border: none;
+        color: white;
+      }
 
-        .category-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        }
+      .category-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      }
 
-        .btn-primary-custom:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0,123,255,0.3);
+      .btn-primary-custom:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
+      }
+      .footer {
+        background: #2c3e50;
+        color: white;
+        padding: 50px 0 20px 0;
+      }
+      @keyframes pulse {
+        0% {
+          transform: scale(0.95);
+          box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.7);
         }
-        @keyframes pulse {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255, 71, 87, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 71, 87, 0); }
+        70% {
+          transform: scale(1);
+          box-shadow: 0 0 0 10px rgba(255, 71, 87, 0);
         }
+        100% {
+          transform: scale(0.95);
+          box-shadow: 0 0 0 0 rgba(255, 71, 87, 0);
+        }
+      }
 
-        .category-icon {
-            font-size: 3rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
+      .category-icon {
+        font-size: 3rem;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+      }
     </style>
-</head>
-<body>
-    <!-- Nav -->
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="#"><i class="fas fa-gavel"></i> BidNow</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="#auctions">Live Auctions</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#categories">Categories</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#how-it-works">How It Works</a>
+            </li>
+          </ul>
+          <div class="d-flex">
+            <button
+              class="btn btn-outline-primary me-2"
+              data-bs-toggle="modal"
+              data-bs-target="#loginModal"
+            >
+              Login
+            </button>
+            <button
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#registerModal"
+            >
+              Register
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
 
     <!-- Hero Section -->
     <section id="home" class="hero-section">
-        <div class="container">
-            <h1>Bid. Win. Celebrate.</h1>
-            <p>Discover amazing deals in our live auction platform</p>
-            <a href="#auctions" class="btn btn-light btn-custom btn-lg">Start Bidding Now</a>
-        </div>
+      <div class="container">
+        <h1>Bid. Win. Celebrate.</h1>
+        <p>Discover amazing deals in our live auction platform</p>
+        <a href="#auctions" class="btn btn-light btn-custom btn-lg"
+          >Start Bidding Now</a
+        >
+      </div>
     </section>
-
 
     <!-- Categories Section -->
     <section id="categories" class="py-5">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2>Browse Categories</h2>
-                <p class="lead">Find exactly what you're looking for</p>
-            </div>
-            <div class="row">
-                <div class="col-md-3 mb-4">
-                    <div class="card category-card h-100 text-center p-4">
-                        <i class="fas fa-car category-icon"></i>
-                        <h5>Vehicles</h5>
-                        <p>Cars, motorcycles, boats</p>
-                    </div>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <div class="card category-card h-100 text-center p-4">
-                        <i class="fas fa-laptop category-icon"></i>
-                        <h5>Electronics</h5>
-                        <p>Phones, laptops, gadgets</p>
-                    </div>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <div class="card category-card h-100 text-center p-4">
-                        <i class="fas fa-gem category-icon"></i>
-                        <h5>Jewelry</h5>
-                        <p>Rings, watches, collectibles</p>
-                    </div>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <div class="card category-card h-100 text-center p-4">
-                        <i class="fas fa-home category-icon"></i>
-                        <h5>Real Estate</h5>
-                        <p>Houses, land, commercial</p>
-                    </div>
-                </div>
-            </div>
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2>Browse Categories</h2>
+          <p class="lead">Find exactly what you're looking for</p>
         </div>
+        <div class="row">
+          <div class="col-md-3 mb-4">
+            <div class="card category-card h-100 text-center p-4">
+              <i class="fas fa-car category-icon"></i>
+              <h5>Vehicles</h5>
+              <p>Cars, motorcycles, boats</p>
+            </div>
+          </div>
+          <div class="col-md-3 mb-4">
+            <div class="card category-card h-100 text-center p-4">
+              <i class="fas fa-laptop category-icon"></i>
+              <h5>Electronics</h5>
+              <p>Phones, laptops, gadgets</p>
+            </div>
+          </div>
+          <div class="col-md-3 mb-4">
+            <div class="card category-card h-100 text-center p-4">
+              <i class="fas fa-gem category-icon"></i>
+              <h5>Jewelry</h5>
+              <p>Rings, watches, collectibles</p>
+            </div>
+          </div>
+          <div class="col-md-3 mb-4">
+            <div class="card category-card h-100 text-center p-4">
+              <i class="fas fa-home category-icon"></i>
+              <h5>Real Estate</h5>
+              <p>Houses, land, commercial</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- Featured Auctions Section -->
     <section id="auctions" class="py-5 bg-light">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2><span class="live-indicator"></span>Live Auctions</h2>
-                <p class="lead">Don't miss out on these hot items!</p>
-            </div>
-            <div class="row" id="auctionContainer">
-                <!-- Auction items will be populated by JavaScript -->
-            </div>
-            <div class="text-center mt-4">
-                <a href="#" class="btn btn-primary btn-custom">View All Auctions</a>
-            </div>
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2><span class="live-indicator"></span>Live Auctions</h2>
+          <p class="lead">Don't miss out on these hot items!</p>
         </div>
+        <div class="row" id="auctionContainer">
+          <!-- Auction items will be populated by JavaScript -->
+        </div>
+        <div class="text-center mt-4">
+          <a href="#" class="btn btn-primary btn-custom">View All Auctions</a>
+        </div>
+      </div>
     </section>
 
     <!-- How It Works Section -->
     <section id="how-it-works" class="py-5">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2>How It Works</h2>
-                <p class="lead">Simple steps to start bidding</p>
-            </div>
-            <div class="row">
-                <div class="col-md-4 text-center mb-4">
-                    <div class="mb-3">
-                        <i class="fas fa-user-plus fa-3x text-primary"></i>
-                    </div>
-                    <h5>1. Register</h5>
-                    <p>Create your free account in seconds</p>
-                </div>
-                <div class="col-md-4 text-center mb-4">
-                    <div class="mb-3">
-                        <i class="fas fa-search fa-3x text-primary"></i>
-                    </div>
-                    <h5>2. Browse</h5>
-                    <p>Find items you love in our categories</p>
-                </div>
-                <div class="col-md-4 text-center mb-4">
-                    <div class="mb-3">
-                        <i class="fas fa-gavel fa-3x text-primary"></i>
-                    </div>
-                    <h5>3. Bid & Win</h5>
-                    <p>Place bids and win amazing items</p>
-                </div>
-            </div>
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2>How It Works</h2>
+          <p class="lead">Simple steps to start bidding</p>
         </div>
+        <div class="row">
+          <div class="col-md-4 text-center mb-4">
+            <div class="mb-3">
+              <i class="fas fa-user-plus fa-3x text-primary"></i>
+            </div>
+            <h5>1. Register</h5>
+            <p>Create your free account in seconds</p>
+          </div>
+          <div class="col-md-4 text-center mb-4">
+            <div class="mb-3">
+              <i class="fas fa-search fa-3x text-primary"></i>
+            </div>
+            <h5>2. Browse</h5>
+            <p>Find items you love in our categories</p>
+          </div>
+          <div class="col-md-4 text-center mb-4">
+            <div class="mb-3">
+              <i class="fas fa-gavel fa-3x text-primary"></i>
+            </div>
+            <h5>3. Bid & Win</h5>
+            <p>Place bids and win amazing items</p>
+          </div>
+        </div>
+      </div>
     </section>
-
     <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <h5><i class="fas fa-gavel"></i> BidNow</h5>
+            <p>
+              The premier online auction platform where buyers and sellers meet
+              to create amazing deals.
+            </p>
+            <div class="social-links">
+              <a href="#" class="text-white me-3"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="#" class="text-white me-3"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="#" class="text-white me-3"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#" class="text-white me-3"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+            </div>
+          </div>
+          <div class="col-md-2 mb-4">
+            <h6>Quick Links</h6>
+            <ul class="list-unstyled">
+              <li><a href="#" class="text-white-50">Home</a></li>
+              <li><a href="#" class="text-white-50">Auctions</a></li>
+              <li><a href="#" class="text-white-50">Categories</a></li>
+              <li><a href="#" class="text-white-50">Sell</a></li>
+            </ul>
+          </div>
+          <div class="col-md-2 mb-4">
+            <h6>Support</h6>
+            <ul class="list-unstyled">
+              <li><a href="#" class="text-white-50">Help Center</a></li>
+              <li><a href="#" class="text-white-50">Contact Us</a></li>
+              <li><a href="#" class="text-white-50">Terms</a></li>
+              <li><a href="#" class="text-white-50">Privacy</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4 mb-4">
+            <h6>Contact Info</h6>
+            <div class="mb-2">
+              <i class="fas fa-phone me-2"></i>
+              <span>+1 (555) 123-4567</span>
+            </div>
+            <div class="mb-2">
+              <i class="fas fa-envelope me-2"></i>
+              <span>support@bidnow.com</span>
+            </div>
+            <div class="mb-2">
+              <i class="fas fa-map-marker-alt me-2"></i>
+              <span>123 Auction St, Bid City, BC 12345</span>
+            </div>
+          </div>
+        </div>
+        <hr class="my-4" />
+        <div class="text-center">
+          <p>&copy; 2025 BidNow. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
 
     <!-- Login Modal -->
-    
+
     <!-- Register Modal -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Sample auction data
-        
-        // Function to format time remaining
-        
-        // Function to create auction card HTML
+      // Sample auction data
 
-        // Function to populate auctions
+      // Function to format time remaining
 
-        // Function to update countdown timers
+      // Function to create auction card HTML
 
-        // Bid placement function
+      // Function to populate auctions
 
-        // Watch item function
+      // Function to update countdown timers
 
-        // Form validation functions
+      // Bid placement function
 
-        // Event listeners for forms
+      // Watch item function
 
-        // Initialize the page
-        document.addEventListener('DOMContentLoaded', function() {
-            populateAuctions();
-            
-            // Update countdowns every second
-            setInterval(updateCountdowns, 1000);
-            
-            // Initial countdown update
-            updateCountdowns();
-        });
+      // Form validation functions
+
+      // Event listeners for forms
+
+      // Initialize the page
+      document.addEventListener("DOMContentLoaded", function () {
+        populateAuctions();
+
+        // Update countdowns every second
+        setInterval(updateCountdowns, 1000);
+
+        // Initial countdown update
+        updateCountdowns();
+      });
     </script>
-</body>
+  </body>
 </html>
