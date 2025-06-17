@@ -66,36 +66,40 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   //Login Form
-  if (loginForm) {
-    loginForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-
-      const email = document.getElementById("loginEmail").value.trim();
-      const password = document.getElementById("loginPassword").value.trim();
-      const role = document.getElementById("loginRole").value;
-
-      const users = getUsers();
-      const user = users.find(
-        (u) => u.email === email && u.password === password
-      );
-
-      if (user) {
-        if (user.role !== role) {
-          alert("Selected role does not match user role.");
-          return;
-        }
-
-        localStorage.setItem("loggedInUser", user.name);
-        localStorage.setItem("userRole", user.role);
-
-        if (user.role === "Admin") {
-          window.location.href = "admin-homepage.html";
-        } else {
-          window.location.href = "user-homepage.html";
-        }
-      } else {
-        alert("Invalid Email or Password. Try again.");
+  // Login Form
+if (loginForm) {
+  loginForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+ 
+    const email = document.getElementById("loginEmail").value.trim();
+    const password = document.getElementById("loginPassword").value.trim();
+    const role = document.getElementById("loginRole").value;
+    const passwordWarning = document.getElementById("passwordWarning");
+ 
+    const users = getUsers();
+    const user = users.find((u) => u.email === email);
+ 
+    if (user && user.password === password) {
+      if (user.role !== role) {
+        alert("Selected role does not match user role.");
+        return;
       }
-    });
-  }
+ 
+      // Clear warning if previously shown
+      passwordWarning.style.display = "none";
+ 
+      localStorage.setItem("loggedInUser", user.name);
+      localStorage.setItem("userRole", user.role);
+ 
+      if (user.role === "Admin") {
+        window.location.href = "admin-homepage.html";
+      } else {
+        window.location.href = "user-homepage.html";
+      }
+    } else {
+      // Show password warning below the field
+      passwordWarning.style.display = "block";
+    }
+  });
+}
 });
