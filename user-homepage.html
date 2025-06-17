@@ -162,7 +162,7 @@
     <section id="auctions" class="py-5 bg-light">
       <div class="container">
         <div class="text-center mb-5">
-          <h2><span class="live-indicator"></span>Live Auctions</h2>
+          <h2>Featured Auctions</h2>
           <p class="lead">Don't miss out on these hot items!</p>
         </div>
         <div class="row" id="auctionContainer">
@@ -283,8 +283,7 @@
           title: "Vintage Watch",
           currentBid: 250,
           timeLeft: new Date(Date.now() + 3600000), // 1 hour from now
-          image:
-            "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=400&h=300&fit=crop",
+          image: "https://via.placeholder.com/300x200",
           bids: 15,
         },
         {
@@ -292,20 +291,9 @@
           title: "Gaming Laptop",
           currentBid: 800,
           timeLeft: new Date(Date.now() + 7200000), // 2 hours from now
-          image:
-            "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&h=300&fit=crop",
+          image: "https://via.placeholder.com/300x200",
           bids: 23,
         },
-        {
-          id: 3,
-          title: "BMW M3 Competition",
-          image:
-            "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop",
-          currentBid: 48000,
-          endTime: new Date(Date.now() + 6 * 60 * 60 * 1000), // 6 hours from now
-          category: "Vehicles",
-          bids: 31,
-        }
       ];
 
       // Function to format time remaining
