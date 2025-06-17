@@ -283,7 +283,8 @@
           title: "Vintage Watch",
           currentBid: 250,
           timeLeft: new Date(Date.now() + 3600000), // 1 hour from now
-          image: "https://via.placeholder.com/300x200",
+          image:
+            "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=400&h=300&fit=crop",
           bids: 15,
         },
         {
@@ -291,8 +292,19 @@
           title: "Gaming Laptop",
           currentBid: 800,
           timeLeft: new Date(Date.now() + 7200000), // 2 hours from now
-          image: "https://via.placeholder.com/300x200",
+          image:
+            "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&h=300&fit=crop",
           bids: 23,
+        },
+        {
+          id: 3,
+          title: "BMW M3 Competition",
+          image:
+            "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop",
+          currentBid: 48000,
+          timeLeft: new Date(Date.now() + 6 * 60 * 60 * 1000), // ✅ Corrected
+          category: "Vehicles",
+          bids: 31,
         },
       ];
 
