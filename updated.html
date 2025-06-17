@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BidNow - Online Auction Platform</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="#"><i class="fas fa-gavel"></i> BidNow</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="#auctions">Live Auctions</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#categories">Categories</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#how-it-works">How It Works</a>
+            </li>
+          </ul>
+          <div class="d-flex">
+            <button class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#loginModal">
+              Login
+            </button>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">
+              Register
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+      <div class="container">
+        <h1>Bid. Win. Celebrate.</h1>
+        <p>Discover amazing deals in our live auction platform</p>
+        <a href="#auctions" class="btn btn-light btn-custom btn-lg">Start Bidding Now</a>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 stat-item">
+            <div class="stat-number">25,000+</div>
+            <h5>Active Users</h5>
+          </div>
+          <div class="col-md-3 stat-item">
+            <div class="stat-number">150+</div>
+            <h5>Live Auctions</h5>
+          </div>
+          <div class="col-md-3 stat-item">
+            <div class="stat-number">$2M+</div>
+            <h5>Total Sales</h5>
+          </div>
+          <div class="col-md-3 stat-item">
+            <div class="stat-number">98%</div>
+            <h5>Success Rate</h5>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="py-5">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2>Browse Categories</h2>
+          <p class="lead">Find exactly what you're looking for</p>
+        </div>
+        <div class="row">
+          <div class="col-md-3 mb-4">
+            <div class="card category-card h-100 text-center p-4">
+              <i class="fas fa-car category-icon"></i>
+              <h5>Vehicles</h5>
+              <p>Cars, motorcycles, boats</p>
+            </div>
+          </div>
+          <div class="col-md-3 mb-4">
+            <div class="card category-card h-100 text-center p-4">
+              <i class="fas fa-laptop category-icon"></i>
+              <h5>Electronics</h5>
+              <p>Phones, laptops, gadgets</p>
+            </div>
+          </div>
+          <div class="col-md-3 mb-4">
+            <div class="card category-card h-100 text-center p-4">
+              <i class="fas fa-gem category-icon"></i>
+              <h5>Jewelry</h5>
+              <p>Rings, watches, collectibles</p>
+            </div>
+          </div>
+          <div class="col-md-3 mb-4">
+            <div class="card category-card h-100 text-center p-4">
+              <i class="fas fa-home category-icon"></i>
+              <h5>Real Estate</h5>
+              <p>Houses, land, commercial</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Auctions Section -->
+    <section id="auctions" class="py-5 bg-light">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2><span class="live-indicator"></span>Live Auctions</h2>
+          <p class="lead">Don't miss out on these hot items!</p>
+        </div>
+        <div class="row" id="auctionContainer">
+          <!-- Auction items will be populated by JavaScript -->
+        </div>
+        <div class="text-center mt-4">
+          <a href="#" class="btn btn-primary btn-custom">View All Auctions</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-5">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2>How It Works</h2>
+          <p class="lead">Simple steps to start bidding</p>
+        </div>
+        <div class="row">
+          <div class="col-md-4 text-center mb-4">
+            <div class="mb-3">
+              <i class="fas fa-user-plus fa-3x text-primary"></i>
+            </div>
+            <h5>1. Register</h5>
+            <p>Create your free account in seconds</p>
+          </div>
+          <div class="col-md-4 text-center mb-4">
+            <div class="mb-3">
+              <i class="fas fa-search fa-3x text-primary"></i>
+            </div>
+            <h5>2. Browse</h5>
+            <p>Find items you love in our categories</p>
+          </div>
+          <div class="col-md-4 text-center mb-4">
+            <div class="mb-3">
+              <i class="fas fa-gavel fa-3x text-primary"></i>
+            </div>
+            <h5>3. Bid & Win</h5>
+            <p>Place bids and win amazing items</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <h5><i class="fas fa-gavel"></i> BidNow</h5>
+            <p>
+              The premier online auction platform where buyers and sellers meet
+              to create amazing deals.
+            </p>
+            <div class="social-links">
+              <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="text-white me-3"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+          <div class="col-md-2 mb-4">
+            <h6>Quick Links</h6>
+            <ul class="list-unstyled">
+              <li><a href="#" class="text-white-50">Home</a></li>
+              <li><a href="#" class="text-white-50">Auctions</a></li>
+              <li><a href="#" class="text-white-50">Categories</a></li>
+              <li><a href="#" class="text-white-50">Sell</a></li>
+            </ul>
+          </div>
+          <div class="col-md-2 mb-4">
+            <h6>Support</h6>
+            <ul class="list-unstyled">
+              <li><a href="#" class="text-white-50">Help Center</a></li>
+              <li><a href="#" class="text-white-50">Contact Us</a></li>
+              <li><a href="#" class="text-white-50">Terms</a></li>
+              <li><a href="#" class="text-white-50">Privacy</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4 mb-4">
+            <h6>Contact Info</h6>
+            <div class="mb-2">
+              <i class="fas fa-phone me-2"></i>
+              <span>+1 (555) 123-4567</span>
+            </div>
+            <div class="mb-2">
+              <i class="fas fa-envelope me-2"></i>
+              <span>support@bidnow.com</span>
+            </div>
+            <div class="mb-2">
+              <i class="fas fa-map-marker-alt me-2"></i>
+              <span>123 Auction St, Bid City, BC 12345</span>
+            </div>
+          </div>
+        </div>
+        <hr class="my-4" />
+        <div class="text-center">
+          <p>&copy; 2025 BidNow. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Login to BidNow</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <form id="loginForm">
+              <div class="mb-3">
+                <label for="loginEmail" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="loginEmail" required>
+                <div class="invalid-feedback">Please enter a valid email address.</div>
+              </div>
+              <div class="mb-3">
+                <label for="loginPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="loginPassword" required>
+                <div class="invalid-feedback">Password is required.</div>
+              </div>
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="rememberMe">
+                <label class="form-check-label" for="rememberMe">Remember me</label>
+              </div>
+              <button type="submit" class="btn btn-primary btn-custom w-100">Login</button>
+            </form>
+            <div class="text-center mt-3">
+              <a href="#" class="text-muted">Forgot your password?</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Join BidNow</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <form id="registerForm">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="firstName" class="form-label">First Name</label>
+                  <input type="text" class="form-control" id="firstName" required>
+                  <div class="invalid-feedback" id="firstNameFeedback">Name must start with uppercase letter, followed by lowercase letters only</div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="lastName" class="form-label">Last Name</label>
+                  <input type="text" class="form-control" id="lastName" required>
+                  <div class="invalid-feedback" id="lastNameFeedback">Name must start with uppercase letter, followed by lowercase letters only</div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="registerEmail" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="registerEmail" required>
+                <div class="invalid-feedback" id="emailFeedback">Email can only contain letters, numbers, dots, and underscores</div>
+              </div>
+              <div class="mb-3">
+                <label for="registerPassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="registerPassword" required minlength="8">
+                <div class="invalid-feedback" id="passwordFeedback">Password must be 8+ chars with uppercase, lowercase, number, and special char</div>
+                <small class="form-text text-muted">Minimum 8 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 special character</small>
+              </div>
+              <div class="mb-3">
+                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="confirmPassword" required>
+                <div class="invalid-feedback" id="confirmPasswordFeedback">Passwords must match</div>
+              </div>
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="agreeTerms" required>
+                <label class="form-check-label" for="agreeTerms">
+                  I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                </label>
+                <div class="invalid-feedback">You must agree to the terms.</div>
+              </div>
+              <button type="submit" class="btn btn-primary btn-custom w-100">Create Account</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Sample auction data
+      const auctions = [
+        {
+          id: 1,
+          title: "Vintage Rolex Submariner",
+          image: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=400&h=300&fit=crop",
+          currentBid: 12500,
+          endTime: new Date(Date.now() + 2 * 60 * 60 * 1000), // 2 hours from now
+          category: "Jewelry",
+          bids: 23,
+        },
+        {
+          id: 2,
+          title: "MacBook Pro 16-inch M3",
+          image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&h=300&fit=crop",
+          currentBid: 2100,
+          endTime: new Date(Date.now() + 4 * 60 * 60 * 1000), // 4 hours from now
+          category: "Electronics",
+          bids: 15,
+        },
+        {
+          id: 3,
+          title: "BMW M3 Competition",
+          image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop",
+          currentBid: 48000,
+          endTime: new Date(Date.now() + 6 * 60 * 60 * 1000), // 6 hours from now
+          category: "Vehicles",
+          bids: 31,
+        },
+        {
+          id: 4,
+          title: "Antique Persian Rug",
+          image: "https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=400&h=300&fit=crop",
+          currentBid: 3200,
+          endTime: new Date(Date.now() + 8 * 60 * 60 * 1000), // 8 hours from now
+          category: "Antiques",
+          bids: 8,
+        },
+        {
+          id: 5,
+          title: "Original Oil Painting",
+          image: "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=300&fit=crop",
+          currentBid: 1800,
+          endTime: new Date(Date.now() + 12 * 60 * 60 * 1000), // 12 hours from now
+          category: "Art",
+          bids: 12,
+        },
+        {
+          id: 6,
+          title: "Diamond Tennis Bracelet",
+          image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&h=300&fit=crop",
+          currentBid: 5600,
+          endTime: new Date(Date.now() + 24 * 60 * 60 * 1000), // 24 hours from now
+          category: "Jewelry",
+          bids: 27,
+        },
+      ];
+
+      // Password history tracking
+      const passwordHistory = {};
+
+      // Function to format time remaining
+      function formatTimeRemaining(endTime) {
+        const now = new Date();
+        const timeDiff = endTime - now;
+
+        if (timeDiff <= 0) {
+          return "ENDED";
+        }
+
+        const hours = Math.floor(timeDiff / (1000 * 60 * 60));
+        const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+        return `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+      }
+
+      // Function to create auction card HTML
+      function createAuctionCard(auction) {
+        return `
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card auction-card">
+              <img src="${auction.image}" class="card-img-top" alt="${auction.title}" style="height: 250px; object-fit: cover;">
+              <div class="card-body">
+                <h5 class="card-title">${auction.title}</h5>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="badge bg-secondary">${auction.category}</span>
+                  <small class="text-muted">${auction.bids} bids</small>
+                </div>
+                <div class="bid-amount">$${auction.currentBid.toLocaleString()}</div>
+                <div class="countdown-timer" data-end-time="${auction.endTime.getTime()}">
+                  <i class="fas fa-clock me-1"></i>
+                  <span class="time-display">${formatTimeRemaining(auction.endTime)}</span>
+                </div>
+                <div class="d-grid gap-2 mt-3">
+                  <button class="btn btn-primary btn-custom" onclick="placeBid(${auction.id})">
+                    <i class="fas fa-gavel me-1"></i> Place Bid
+                  </button>
+                  <button class="btn btn-outline-secondary" onclick="watchItem(${auction.id})">
+                    <i class="fas fa-heart me-1"></i> Watch
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      // Function to populate auctions
+      function populateAuctions() {
+        const container = document.getElementById("auctionContainer");
+        container.innerHTML = auctions.map(createAuctionCard).join("");
+      }
+
+      // Function to update countdown timers
+      function updateCountdowns() {
+        const countdownElements = document.querySelectorAll(".countdown-timer");
+        countdownElements.forEach((element) => {
+          const endTime = new Date(parseInt(element.dataset.endTime));
+          const timeDisplay = element.querySelector(".time-display");
+          const remaining = formatTimeRemaining(endTime);
+
+          if (remaining === "ENDED") {
+            element.classList.remove("bg-danger");
+            element.classList.add("bg-secondary");
+            timeDisplay.textContent = "ENDED";
+          } else {
+            timeDisplay.textContent = remaining;
+          }
+        });
+      }
+
+      // Bid placement function
+      function placeBid(auctionId) {
+        const auction = auctions.find((a) => a.id === auctionId);
+        if (auction) {
+          const minBid = auction.currentBid + 50; // Minimum increment of $50
+          const bidAmount = prompt(`Enter your bid amount (minimum $${minBid.toLocaleString()}):`);
+
+          if (bidAmount && !isNaN(bidAmount) && parseFloat(bidAmount) >= minBid) {
+            auction.currentBid = parseFloat(bidAmount);
+            auction.bids += 1;
+            populateAuctions();
+            alert(`Bid placed successfully! Your bid: $${parseFloat(bidAmount).toLocaleString()}`);
+          } else if (bidAmount) {
+            alert(`Invalid bid amount. Minimum bid is $${minBid.toLocaleString()}`);
+          }
+        }
+      }
+
+      // Watch item function
+      function watchItem(auctionId) {
+        alert(`Added to your watch list! You'll be notified of any updates for this auction.`);
+      }
+
+      
+      // Updated name validation function
+    function validateName(name) {
+    // First letter uppercase, rest lowercase, no symbols/numbers
+    const re = /^[A-Z][a-z]*$/;
+    return re.test(name);
+}
+
+      function validateStrictEmail(email) {
+        // Only letters, numbers, dots, and underscores allowed
+        const re = /^[a-zA-Z0-9._]+@[a-zA-Z0-9.]+\.[a-zA-Z]{2,}$/;
+        return re.test(email);
+      }
+
+      function validateStrongPassword(password) {
+        // Minimum 8 chars, at least 1 uppercase, 1 lowercase, 1 number, 1 special char
+        const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        return re.test(password);
+      }
+
+      function isPasswordReused(email, newPassword) {
+        if (passwordHistory[email]) {
+          return passwordHistory[email].includes(newPassword);
+        }
+        return false;
+      }
+
+      function addToPasswordHistory(email, password) {
+        if (!passwordHistory[email]) {
+          passwordHistory[email] = [];
+        }
+        passwordHistory[email].push(password);
+      }
+
+      function validateLoginForm() {
+        const email = document.getElementById("loginEmail");
+        const password = document.getElementById("loginPassword");
+        let isValid = true;
+
+        // Email validation
+        if (!email.value || !validateStrictEmail(email.value)) {
+          email.classList.add("is-invalid");
+          isValid = false;
+        } else {
+          email.classList.remove("is-invalid");
+          email.classList.add("is-valid");
+        }
+
+        // Password validation
+        if (!password.value) {
+          password.classList.add("is-invalid");
+          isValid = false;
+        } else {
+          password.classList.remove("is-invalid");
+          password.classList.add("is-valid");
+        }
+
+        return isValid;
+      }
+
+      function validateRegisterForm() {
+        const firstName = document.getElementById("firstName");
+        const lastName = document.getElementById("lastName");
+        const email = document.getElementById("registerEmail");
+        const password = document.getElementById("registerPassword");
+        const confirmPassword = document.getElementById("confirmPassword");
+        const agreeTerms = document.getElementById("agreeTerms");
+        
+        let isValid = true;
+
+        // Validate first name (must start with capital, no symbols)
+        if (!firstName.value.trim() || !validateName(firstName.value)) {
+          firstName.classList.add("is-invalid");
+          isValid = false;
+          document.getElementById("firstNameFeedback").textContent = 
+            "Name must start with capital letter and contain only letters";
+        } else {
+          firstName.classList.remove("is-invalid");
+          firstName.classList.add("is-valid");
+        }
+
+        // Validate last name (must start with capital, no symbols)
+        if (!lastName.value.trim() || !validateName(lastName.value)) {
+          lastName.classList.add("is-invalid");
+          isValid = false;
+          document.getElementById("lastNameFeedback").textContent = 
+            "Name must start with capital letter and contain only letters";
+        } else {
+          lastName.classList.remove("is-invalid");
+          lastName.classList.add("is-valid");
+        }
+
+        // Validate email (only _ allowed as special character)
+        if (!email.value || !validateStrictEmail(email.value)) {
+          email.classList.add("is-invalid");
+          isValid = false;
+          document.getElementById("emailFeedback").textContent = 
+            "Email can only contain letters, numbers, dots, and underscores";
+        } else {
+          email.classList.remove("is-invalid");
+          email.classList.add("is-valid");
+        }
+
+        // Validate password (strong password requirements)
+        if (!password.value || !validateStrongPassword(password.value)) {
+          password.classList.add("is-invalid");
+          isValid = false;
+          document.getElementById("passwordFeedback").textContent = 
+            "Password must be 8+ chars with uppercase, lowercase, number, and special char";
+        } else {
+          password.classList.remove("is-invalid");
+          password.classList.add("is-valid");
+        }
+
+        // Validate confirm password
+        if (!confirmPassword.value || confirmPassword.value !== password.value) {
+          confirmPassword.classList.add("is-invalid");
+          isValid = false;
+          document.getElementById("confirmPasswordFeedback").textContent = 
+            "Passwords must match";
+        } else {
+          confirmPassword.classList.remove("is-invalid");
+          confirmPassword.classList.add("is-valid");
+        }
+
+        // Validate terms agreement
+        if (!agreeTerms.checked) {
+          agreeTerms.classList.add("is-invalid");
+          isValid = false;
+        } else {
+          agreeTerms.classList.remove("is-invalid");
+        }
+
+        return isValid;
+      }
+
+      // User Management Functions
+      function getUsers() {
+        return JSON.parse(localStorage.getItem("users")) || [];
+      }
+
+      function saveUser(user) {
+        const users = getUsers();
+        users.push(user);
+        localStorage.setItem("users", JSON.stringify(users));
+      }
+
+      // Enhanced Registration Handler
+      document.getElementById("registerForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        
+        if (!validateRegisterForm()) return;
+        
+        const firstName = document.getElementById("firstName").value.trim();
+        const lastName = document.getElementById("lastName").value.trim();
+        const email = document.getElementById("registerEmail").value.trim();
+        const password = document.getElementById("registerPassword").value;
+        
+        const users = getUsers();
+        const userExists = users.some(user => user.email === email);
+        
+        if (userExists) {
+          alert("This email is already registered.");
+          return;
+        }
+        
+        if (isPasswordReused(email, password)) {
+          alert("You cannot reuse a previous password.");
+          return;
+        }
+        
+        const newUser = { firstName, lastName, email, password };
+        saveUser(newUser);
+        addToPasswordHistory(email, password);
+        
+        alert("Registration successful! Welcome to BidNow.");
+        bootstrap.Modal.getInstance(document.getElementById("registerModal")).hide();
+        this.reset();
+      });
+
+      // Enhanced Login Handler
+      document.getElementById("loginForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        
+        if (!validateLoginForm()) return;
+        
+        const email = document.getElementById("loginEmail").value.trim();
+        const password = document.getElementById("loginPassword").value;
+        
+        const users = getUsers();
+        const user = users.find(u => u.email === email && u.password === password);
+        
+        if (user) {
+          alert(`Welcome back, ${user.firstName}!`);
+          bootstrap.Modal.getInstance(document.getElementById("loginModal")).hide();
+          this.reset();
+        } else {
+          alert("Invalid email or password.");
+        }
+      });
+
+      // Forgot Password Handler
+      function handleForgotPassword(email, newPassword) {
+        if (isPasswordReused(email, newPassword)) {
+          return { success: false, message: "Cannot reuse previous passwords" };
+        }
+        
+        const users = getUsers();
+        const userIndex = users.findIndex(u => u.email === email);
+        
+        if (userIndex !== -1) {
+          users[userIndex].password = newPassword;
+          localStorage.setItem("users", JSON.stringify(users));
+          addToPasswordHistory(email, newPassword);
+          return { success: true, message: "Password updated successfully" };
+        }
+        
+        return { success: false, message: "Email not found" };
+      }
+
+      // Initialize the page
+      document.addEventListener("DOMContentLoaded", function() {
+        populateAuctions();
+        setInterval(updateCountdowns, 1000);
+        updateCountdowns();
+        
+        // Setup real-time validation
+        document.getElementById("firstName").addEventListener("input", function() {
+          if (validateName(this.value)) {
+            this.classList.remove("is-invalid");
+            this.classList.add("is-valid");
+          } else {
+            this.classList.remove("is-valid");
+          }
+        });
+        
+        document.getElementById("lastName").addEventListener("input", function() {
+          if (validateName(this.value)) {
+            this.classList.remove("is-invalid");
+            this.classList.add("is-valid");
+          } else {
+            this.classList.remove("is-valid");
+          }
+        });
+        
+        document.getElementById("registerEmail").addEventListener("input", function() {
+          if (validateStrictEmail(this.value)) {
+            this.classList.remove("is-invalid");
+            this.classList.add("is-valid");
+          } else {
+            this.classList.remove("is-valid");
+          }
+        });
+        
+        document.getElementById("registerPassword").addEventListener("input", function() {
+          if (validateStrongPassword(this.value)) {
+            this.classList.remove("is-invalid");
+            this.classList.add("is-valid");
+          } else {
+            this.classList.remove("is-valid");
+          }
+        });
+        
+        document.getElementById("confirmPassword").addEventListener("input", function() {
+          const password = document.getElementById("registerPassword").value;
+          if (this.value && this.value === password) {
+            this.classList.remove("is-invalid");
+            this.classList.add("is-valid");
+          } else {
+            this.classList.remove("is-valid");
+          }
+        });
+      });
+    </script>
+</body>
+</html>
