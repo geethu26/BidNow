@@ -2,9 +2,7 @@
 
 ## Sprint 1 Summary
 
-This repository contains the frontend code for **Sprint 1** of *BidNow*, a real-time auction platform. In this sprint, the team focused on laying the foundation of the project by developing UI components, defining file structures, and initiating version control workflows using git and github.
-
----
+This repository contains the frontend code for **Sprint 1** of _BidNow_, a real-time auction platform. In this sprint, the team focused on laying the foundation of the project by developing UI components, defining file structures, and initiating version control workflows using git and github.
 
 ## 🏁 Sprint Goal
 
@@ -14,14 +12,14 @@ Design and implement the initial static UI components (homepage, auction list, l
 
 ## ✅ Completed User Stories (Story Status)
 
-| Story ID | User Story                                                        |Status |
-|----------|-------------------------------------------------------------------|-------|
-| US-01    | As a team member , I want to set up GitHub version control        | Done  |
-| US-02    | As a user, I want to view featured auctions on homepage           | Done  |
-| US-03    | As a user, I want to register and login to the portal             | Done  |
-| US-04    | As a user, I want to see auction items with countdown             | Done  |
-| US-05    | As a user, I want to see navbar and footer for better navigation  | Done  |
-| US-06    | As a team member, I want to implement countdown for auction items | Done  |
+| Story ID | User Story                                                        | Status |
+| -------- | ----------------------------------------------------------------- | ------ |
+| US-01    | As a team member , I want to set up GitHub version control        | Done   |
+| US-02    | As a user, I want to view featured auctions on homepage           | Done   |
+| US-03    | As a user, I want to register and login to the portal             | Done   |
+| US-04    | As a user, I want to see auction items with countdown             | Done   |
+| US-05    | As a user, I want to see navbar and footer for better navigation  | Done   |
+| US-06    | As a team member, I want to implement countdown for auction items | Done   |
 
 ✔️ All stories marked as “done” in OpenProject with acceptance criteria met.
 
@@ -58,7 +56,6 @@ Design and implement the initial static UI components (homepage, auction list, l
 
 ---
 
-
 ⚠️ Sprint 1 is static-only: no backend/database or interactivity is enabled yet.
 
 ---
@@ -70,16 +67,15 @@ Design and implement the initial static UI components (homepage, auction list, l
 - Jayashree VS
 - Karthika RS
 - Kushagra Srivastava
-- Mayukh Paul. 
-
+- Mayukh Paul.
 
 ---
 
 ## 📅 Sprint Details
 
-- **Sprint Number:** 1  
+- **Sprint Number:** 1
 - **Sprint Pod Name:** BidNow – Online Auction System
-- **Submission Date:** 18th June, 2025. 
+- **Submission Date:** 18th June, 2025.
 
 ---
 
@@ -103,4 +99,3 @@ Design and implement the initial static UI components (homepage, auction list, l
 - Implement PWA and SPA
 
 ---
-
