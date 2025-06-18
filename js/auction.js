@@ -134,25 +134,20 @@ function createAuctionCard(auction) {
   return `
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card auction-card">
-                        <img src="${auction.image}" class="card-img-top" alt="${
-    auction.title
-  }" style="height: 250px; object-fit: cover;">
+                        <img src="${auction.image}" class="card-img-top" alt="${auction.title
+    }" style="height: 250px; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">${auction.title}</h5>
                             <div class="d-flex justify-content-between align-items-center mb-2">
-                                <span class="badge bg-secondary">${
-                                  auction.category
-                                }</span>
-                                <small class="text-muted">${
-                                  auction.bids
-                                } bids</small>
-                            </div>
+                                <span class="badge bg-secondary">${auction.category
+    }</span>
+                                <small class="text-muted">${auction.bids
+    } bids</small>
+                                </div>
                             <div class="bid-amount">$${auction.currentBid.toLocaleString()}</div>
                             <div class="countdown-timer" data-end-time="${auction.endTime.getTime()}">
                                 <i class="fas fa-clock me-1"></i>
-                                <span class="time-display">${formatTimeRemaining(
-                                  auction.endTime
-                                )}</span>
+                                <span class="time-display">${formatTimeRemaining(auction.endTime                                )}</span>
                             </div>
                             <div class="d-grid gap-2 mt-3">
                                 <button class="btn btn-primary btn-custom" onclick="placeBid(${
@@ -204,3 +199,43 @@ document
     const aud = document.getElementById("auctions");
     if (aud) aud.scrollIntoView({ behavior: "smooth" });
   });
+// Bid placement function
+function placeBid(auctionId) {
+  const auction = auctions.find(a => a.id === auctionId);
+  if (auction) {
+    const minBid = auction.currentBid + 50;
+    const bidAmount = prompt(`Enter your bid amount (minimum $${minBid.toLocaleString()}):`);
+
+    if (bidAmount && !isNaN(bidAmount) && parseFloat(bidAmount) >= minBid) {
+      const userBids = JSON.parse(sessionStorage.getItem('userBids')) || [];
+
+      const newBid = {
+        id: Date.now(),
+        auctionId: auctionId,
+        title: auction.title,
+        image: auction.image,
+        category: auction.category,
+        bidAmount: parseFloat(bidAmount),
+        previousBid: auction.currentBid,
+        bidTime: new Date(),
+        endTime: auction.endTime,
+        status: 'active'
+      };
+
+      userBids.push(newBid);
+      auction.currentBid = parseFloat(bidAmount);
+      auction.bids += 1;
+      sessionStorage.setItem('userBids', JSON.stringify(userBids));
+
+      alert(`Bid placed successfully! Your bid: $${parseFloat(bidAmount).toLocaleString()}`);
+
+      if (window.location.pathname.includes('MyBid')) {
+        location.reload();
+      } else {
+        populateAuctions?.(); // re-render if needed
+      }
+    } else if (bidAmount) {
+      alert(`Invalid bid amount. Minimum bid is $${minBid.toLocaleString()}`);
+    }
+  }
+}
