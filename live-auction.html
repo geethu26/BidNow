@@ -42,6 +42,10 @@
             <li class="nav-item">
               <a class="nav-link" href="#how-it-works">How It Works</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+ 
           </ul>
 
           <!-- User Profile Dropdown -->
@@ -67,7 +71,7 @@
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="#my-bids">
+                  <a class="dropdown-item" href="MyBid.html" data-link>
                     <i class="fas fa-gavel"></i>
                     My Bids
                   </a>
@@ -185,7 +189,12 @@
         </div>
       </div>
     </footer>
-
+    <script>
+  window.addEventListener('load', () => {
+    const bids = JSON.parse(sessionStorage.getItem('userBids') || '[]');
+    console.log("Current user bids:", bids);
+  });
+</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
     <script src="js/countdown.js"></script>
     <script src="js/auction.js"></script>
