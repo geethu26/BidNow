@@ -32,26 +32,4 @@ function updateCountdowns() {
   });
 }
 
-// Bid placement function
-function placeBid(auctionId) {
-  const auction = auctions.find((a) => a.id === auctionId);
-  if (auction) {
-    const minBid = auction.currentBid + 50; // Minimum increment of $50
-    const bidAmount = prompt(
-      `Enter your bid amount (minimum $${minBid.toLocaleString()}):`
-    );
 
-    if (bidAmount && !isNaN(bidAmount) && parseFloat(bidAmount) >= minBid) {
-      auction.currentBid = parseFloat(bidAmount);
-      auction.bids += 1;
-      populateAuctions();
-      alert(
-        `Bid placed successfully! Your bid: $${parseFloat(
-          bidAmount
-        ).toLocaleString()}`
-      );
-    } else if (bidAmount) {
-      alert(`Invalid bid amount. Minimum bid is $${minBid.toLocaleString()}`);
-    }
-  }
-}

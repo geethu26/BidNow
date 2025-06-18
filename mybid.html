@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Bids - BidNow</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="user-homepage.html"><i class="fas fa-gavel"></i> BidNow</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item"><a class="nav-link" href="user-homepage.html">Home</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="live-auction.html">Live Auctions</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#categories">Categories</a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+
+          <!-- User Profile Dropdown -->
+          <div class="user-profile" id="userProfile">
+            <div class="dropdown user-dropdown">
+              <button
+                class="btn dropdown-toggle d-flex align-items-center"
+                type="button"
+                id="userDropdown"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <span class="ms-2" id="userName">John Doe</span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                <li>
+                  <a class="dropdown-item" href="#profile">
+                    <i class="fas fa-user"></i> My Profile
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="MyBid.html">
+                    <i class="fas fa-gavel"></i> My Bids
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#watchlist">
+                    <i class="fas fa-heart"></i> Watchlist
+                  </a>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item text-danger" href="#" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="py-5 bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h1 class="display-5 fw-bold text-center mb-3">
+              <i class="fas fa-gavel text-primary"></i> My Bids
+            </h1>
+            <p class="lead text-center text-muted">Track all your auction bids in one place</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bid Statistics -->
+    <section class="py-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 mb-3">
+            <div class="card text-center bg-primary text-white">
+              <div class="card-body">
+                <h3 class="card-title" id="totalBids">0</h3>
+                <p class="card-text">Total Bids</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <div class="card text-center bg-success text-white">
+              <div class="card-body">
+                <h3 class="card-title" id="activeBids">0</h3>
+                <p class="card-text">Active Bids</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <div class="card text-center bg-warning text-white">
+              <div class="card-body">
+                <h3 class="card-title" id="winningBids">0</h3>
+                <p class="card-text">Winning</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <div class="card text-center bg-info text-white">
+              <div class="card-body">
+                <h3 class="card-title" id="totalSpent">$0</h3>
+                <p class="card-text">Total Bid Amount</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bid Filters -->
+    <section class="py-3 bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-outline-primary active" data-filter="all">
+                All Bids
+              </button>
+              <button type="button" class="btn btn-outline-primary" data-filter="active">
+                Active
+              </button>
+              <button type="button" class="btn btn-outline-primary" data-filter="winning">
+                Winning
+              </button>
+              <button type="button" class="btn btn-outline-primary" data-filter="ended">
+                Ended
+              </button>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="input-group">
+              <input type="text" class="form-control" id="searchBids" placeholder="Search your bids...">
+              <button class="btn btn-outline-secondary" type="button">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- My Bids Section -->
+    <section class="py-5">
+      <div class="container">
+        <div id="noBidsMessage" class="text-center py-5" style="display: none;">
+          <i class="fas fa-gavel fa-5x text-muted mb-4"></i>
+          <h3 class="text-muted">No Bids Placed Yet</h3>
+          <p class="text-muted">Start bidding on items to see them here!</p>
+          <a href="live-auction.html" class="btn btn-primary btn-custom">
+            Browse Auctions
+          </a>
+        </div>
+
+        <div class="row" id="bidContainer">
+          <!-- Bid items will be populated by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <h5><i class="fas fa-gavel"></i> BidNow</h5>
+            <p>The premier online auction platform where buyers and sellers meet to create amazing deals.</p>
+          </div>
+          <div class="col-md-4 mb-4">
+            <h6>Quick Links</h6>
+            <ul class="list-unstyled">
+              <li><a href="user-homepage.html" class="text-white-50">Home</a></li>
+              <li><a href="live-auction.html" class="text-white-50">Auctions</a></li>
+              <li><a href="#" class="text-white-50">Categories</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4 mb-4">
+            <h6>Contact Info</h6>
+            <div class="mb-2">
+              <i class="fas fa-envelope me-2"></i>
+              <span>support@bidnow.com</span>
+            </div>
+          </div>
+        </div>
+        <hr class="my-4" />
+        <div class="text-center">
+          <p>&copy; 2025 BidNow. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="js/auction.js"></script>
+    <script>
+      // Sample auction data (same as your existing auctions)
+      
+
+      // User bids storage
+      let userBids = (JSON.parse(sessionStorage.getItem('userBids')) || []).map(bid => ({
+  ...bid,
+  bidTime: new Date(bid.bidTime),
+  endTime: new Date(bid.endTime)
+}));
+
+
+      // Enhanced placeBid function for integration with your existing code
+      
+
+      // Format time remaining
+      function formatTimeRemaining(endTime) {
+        const now = new Date();
+        const timeDiff = endTime - now;
+        
+        if (timeDiff <= 0) return "ENDED";
+        
+        const hours = Math.floor(timeDiff / (1000 * 60 * 60));
+        const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+        
+        return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      }
+
+      // Update bid status based on current auction state
+      function updateBidStatus(bid) {
+        const auction = auctions.find(a => a.id === bid.auctionId);
+        if (!auction) return 'ended';
+        
+        const now = new Date();
+        if (auction.endTime <= now) {
+          return bid.bidAmount >= auction.currentBid ? 'won' : 'lost';
+        }
+        
+        return bid.bidAmount >= auction.currentBid ? 'winning' : 'outbid';
+      }
+
+      // Create bid card HTML
+      function createBidCard(bid) {
+        const status = updateBidStatus(bid);
+        const timeRemaining = formatTimeRemaining(bid.endTime);
+        
+        let statusBadge = '';
+        let statusClass = '';
+        
+        switch(status) {
+          case 'winning':
+            statusBadge = '<span class="badge bg-success">Winning</span>';
+            statusClass = 'border-success';
+            break;
+          case 'outbid':
+            statusBadge = '<span class="badge bg-warning">Outbid</span>';
+            statusClass = 'border-warning';
+            break;
+          case 'won':
+            statusBadge = '<span class="badge bg-primary">Won</span>';
+            statusClass = 'border-primary';
+            break;
+          case 'lost':
+            statusBadge = '<span class="badge bg-danger">Lost</span>';
+            statusClass = 'border-danger';
+            break;
+          default:
+            statusBadge = '<span class="badge bg-secondary">Active</span>';
+            statusClass = 'border-secondary';
+        }
+        
+        return `
+          <div class="col-lg-4 col-md-6 mb-4 bid-item" data-status="${status}">
+            <div class="card auction-card ${statusClass}">
+              <img src="${bid.image}" class="card-img-top" alt="${bid.title}" style="height: 200px; object-fit: cover;">
+              <div class="card-body">
+                <h5 class="card-title">${bid.title}</h5>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="badge bg-secondary">${bid.category}</span>
+                  ${statusBadge}
+                </div>
+                <div class="row mb-2">
+                  <div class="col-6">
+                    <small class="text-muted">Your Bid</small>
+                    <div class="fw-bold text-primary">$${bid.bidAmount.toLocaleString()}</div>
+                  </div>
+                  <div class="col-6">
+                    <small class="text-muted">Current Bid</small>
+                    <div class="fw-bold text-success">$${auctions.find(a => a.id === bid.auctionId)?.currentBid.toLocaleString() || bid.bidAmount.toLocaleString()}</div>
+                  </div>
+                </div>
+                <div class="mb-2">
+                  <small class="text-muted">Time Remaining</small>
+                  <div class="fw-bold ${timeRemaining === 'ENDED' ? 'text-danger' : 'text-warning'}">${timeRemaining}</div>
+                </div>
+                <div class="mb-2">
+                  <small class="text-muted">Bid Placed</small>
+                  <div class="small">${bid.bidTime.toLocaleDateString()} ${bid.bidTime.toLocaleTimeString()}</div>
+                </div>
+                <div class="d-grid gap-2 mt-3">
+                  ${status === 'outbid' && timeRemaining !== 'ENDED' ? 
+                    `<button class="btn btn-primary btn-sm" onclick="placeBid(${bid.auctionId})">
+                      <i class="fas fa-gavel"></i> Bid Again
+                    </button>` : 
+                    `<button class="btn btn-outline-primary btn-sm" onclick="viewAuction(${bid.auctionId})">
+                      <i class="fas fa-eye"></i> View Auction
+                    </button>`
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+     
+
+
+      // Populate bids
+      function populateBids(filter = 'all') {
+        const container = document.getElementById('bidContainer');
+        const noBidsMessage = document.getElementById('noBidsMessage');
+        
+        if (userBids.length === 0) {
+          container.innerHTML = '';
+          noBidsMessage.style.display = 'block';
+          return;
+        }
+        
+        noBidsMessage.style.display = 'none';
+        
+        let filteredBids = userBids;
+        if (filter !== 'all') {
+          filteredBids = userBids.filter(bid => {
+            const status = updateBidStatus(bid);
+            if (filter === 'active') return status === 'winning' || status === 'outbid';
+            if (filter === 'winning') return status === 'winning';
+            if (filter === 'ended') return status === 'won' || status === 'lost';
+            return true;
+          });
+        }
+        
+        container.innerHTML = filteredBids.map(createBidCard).join('');
+        updateStatistics();
+      }
+
+      // Update statistics
+      function updateStatistics() {
+        const totalBids = userBids.length;
+        let activeBids = 0;
+        let winningBids = 0;
+        let totalSpent = 0;
+        
+        userBids.forEach(bid => {
+          const status = updateBidStatus(bid);
+          if (status === 'winning' || status === 'outbid') activeBids++;
+          if (status === 'winning') winningBids++;
+          if (status === 'won') totalSpent += bid.bidAmount;
+        });
+        
+        document.getElementById('totalBids').textContent = totalBids;
+        document.getElementById('activeBids').textContent = activeBids;
+        document.getElementById('winningBids').textContent = winningBids;
+        document.getElementById('totalSpent').textContent = `$${totalSpent.toLocaleString()}`;
+      }
+
+      // View auction function
+      function viewAuction(auctionId) {
+        // Redirect to live auction page with auction ID
+        window.location.href = `live-auction.html#auction-${auctionId}`;
+      }
+
+      // Filter functionality
+      function setupFilters() {
+        const filterButtons = document.querySelectorAll('[data-filter]');
+        filterButtons.forEach(button => {
+          button.addEventListener('click', (e) => {
+            // Remove active class from all buttons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            // Add active class to clicked button
+            e.target.classList.add('active');
+            // Filter bids
+            populateBids(e.target.dataset.filter);
+          });
+        });
+      }
+
+      // Search functionality
+      function setupSearch() {
+        const searchInput = document.getElementById('searchBids');
+        searchInput.addEventListener('input', (e) => {
+          const searchTerm = e.target.value.toLowerCase();
+          const bidItems = document.querySelectorAll('.bid-item');
+          
+          bidItems.forEach(item => {
+            const title = item.querySelector('.card-title').textContent.toLowerCase();
+            const category = item.querySelector('.badge.bg-secondary').textContent.toLowerCase();
+            
+            if (title.includes(searchTerm) || category.includes(searchTerm)) {
+              item.style.display = 'block';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+      }
+
+      // Logout function
+      function logout() {
+        if (confirm("Are you sure you want to logout?")) {
+          sessionStorage.clear();
+          alert("You have been logged out successfully!");
+          window.location.href = "index.html";
+        }
+      }
+
+      // Initialize page
+      document.addEventListener('DOMContentLoaded', function() {
+        // Set user name
+        const user = sessionStorage.getItem("loggedInUser") || "John Doe";
+        document.getElementById("userName").textContent = user;
+        
+        // Populate bids
+        populateBids();
+        
+        // Setup filters and search
+        setupFilters();
+        setupSearch();
+        
+        // Update countdowns every second
+        setInterval(() => {
+          populateBids(document.querySelector('[data-filter].active').dataset.filter);
+        }, 1000);
+      });
+
+      // Make placeBid function available globally for integration
+      window.placeBid = placeBid;
+    </script>
+    
+
+  </body>
+</html>
