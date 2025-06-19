@@ -27,7 +27,8 @@ Enhance the platform with routing, interactive features, dynamic auction data re
 |          |  so that the site loads faster                                    |        |
 | US-06    | As a user, I want to access the portal offline and install it     | Done   |
 |          |  on my device like an app                                         |        |
-|----------|-------------------------------------------------------------------|--------|
+
+---
 ✔️ All stories were tracked via OpenProject and marked complete.
 
 ---
