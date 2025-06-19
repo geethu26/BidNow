@@ -31,7 +31,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav me-auto">
-            <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="user-homepage.html">Home</a>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="live-auction.html">Live Auctions</a>
             </li>
@@ -42,9 +44,13 @@
               <a class="nav-link" href="#how-it-works">How It Works</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
+              <a
+                class="nav-link"
+                href="#/contact"
+                onclick="navigateTo('contact')"
+                >Contact</a
+              >
             </li>
- 
           </ul>
 
           <!-- User Profile Dropdown -->
@@ -111,107 +117,111 @@
       </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero-section">
-      <div class="container">
-        <h1>Bid. Win. Celebrate.</h1>
-        <p>Discover amazing deals in our live auction platform</p>
-        <a href="live-auction.html" class="btn btn-light btn-custom btn-lg"
-          >Start Bidding Now</a
-        >
-      </div>
-    </section>
-
-    <!-- Categories Section -->
-    <section id="categories" class="py-5">
-      <div class="container">
-        <div class="text-center mb-5">
-          <h2>Browse Categories</h2>
-          <p class="lead">Find exactly what you're looking for</p>
-        </div>
-        <div class="row">
-          <div class="col-md-3 mb-4">
-            <div class="card category-card h-100 text-center p-4">
-              <i class="fas fa-car category-icon"></i>
-              <h5>Vehicles</h5>
-              <p>Cars, motorcycles, boats</p>
-            </div>
-          </div>
-          <div class="col-md-3 mb-4">
-            <div class="card category-card h-100 text-center p-4">
-              <i class="fas fa-laptop category-icon"></i>
-              <h5>Electronics</h5>
-              <p>Phones, laptops, gadgets</p>
-            </div>
-          </div>
-          <div class="col-md-3 mb-4">
-            <div class="card category-card h-100 text-center p-4">
-              <i class="fas fa-gem category-icon"></i>
-              <h5>Jewelry</h5>
-              <p>Rings, watches, collectibles</p>
-            </div>
-          </div>
-          <div class="col-md-3 mb-4">
-            <div class="card category-card h-100 text-center p-4">
-              <i class="fas fa-home category-icon"></i>
-              <h5>Real Estate</h5>
-              <p>Houses, land, commercial</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Featured Auctions Section -->
-    <section id="auctions" class="py-5 bg-light">
-      <div class="container">
-        <div class="text-center mb-5">
-          <h2>Featured Auctions</h2>
-          <p class="lead">Don't miss out on these hot items!</p>
-        </div>
-        <div class="row" id="auctionContainer">
-          <!-- Auction items will be populated by JavaScript -->
-        </div>
-        <div class="text-center mt-4">
-          <a href="live-auction.html" class="btn btn-primary btn-custom"
-            >View All Auctions</a
+    <div id="main-content">
+      <!-- All your sections: hero, categories, featured, how-it-works -->
+      <!-- Hero Section -->
+      <section id="home" class="hero-section">
+        <div class="container">
+          <h1>Bid. Win. Celebrate.</h1>
+          <p>Discover amazing deals in our live auction platform</p>
+          <a href="live-auction.html" class="btn btn-light btn-custom btn-lg"
+            >Start Bidding Now</a
           >
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- How It Works Section -->
-    <section id="how-it-works" class="py-5">
-      <div class="container">
-        <div class="text-center mb-5">
-          <h2>How It Works</h2>
-          <p class="lead">Simple steps to start bidding</p>
+      <!-- Categories Section -->
+      <section id="categories" class="py-5">
+        <div class="container">
+          <div class="text-center mb-5">
+            <h2>Browse Categories</h2>
+            <p class="lead">Find exactly what you're looking for</p>
+          </div>
+          <div class="row">
+            <div class="col-md-3 mb-4">
+              <div class="card category-card h-100 text-center p-4">
+                <i class="fas fa-car category-icon"></i>
+                <h5>Vehicles</h5>
+                <p>Cars, motorcycles, boats</p>
+              </div>
+            </div>
+            <div class="col-md-3 mb-4">
+              <div class="card category-card h-100 text-center p-4">
+                <i class="fas fa-laptop category-icon"></i>
+                <h5>Electronics</h5>
+                <p>Phones, laptops, gadgets</p>
+              </div>
+            </div>
+            <div class="col-md-3 mb-4">
+              <div class="card category-card h-100 text-center p-4">
+                <i class="fas fa-gem category-icon"></i>
+                <h5>Jewelry</h5>
+                <p>Rings, watches, collectibles</p>
+              </div>
+            </div>
+            <div class="col-md-3 mb-4">
+              <div class="card category-card h-100 text-center p-4">
+                <i class="fas fa-home category-icon"></i>
+                <h5>Real Estate</h5>
+                <p>Houses, land, commercial</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="row">
-          <div class="col-md-4 text-center mb-4">
-            <div class="mb-3">
-              <i class="fas fa-user-plus fa-3x text-primary"></i>
-            </div>
-            <h5>1. Register</h5>
-            <p>Create your free account in seconds</p>
+      </section>
+
+      <!-- Featured Auctions Section -->
+      <section id="auctions" class="py-5 bg-light">
+        <div class="container">
+          <div class="text-center mb-5">
+            <h2>Featured Auctions</h2>
+            <p class="lead">Don't miss out on these hot items!</p>
           </div>
-          <div class="col-md-4 text-center mb-4">
-            <div class="mb-3">
-              <i class="fas fa-search fa-3x text-primary"></i>
-            </div>
-            <h5>2. Browse</h5>
-            <p>Find items you love in our categories</p>
+          <div class="row" id="auctionContainer">
+            <!-- Auction items will be populated by JavaScript -->
           </div>
-          <div class="col-md-4 text-center mb-4">
-            <div class="mb-3">
-              <i class="fas fa-gavel fa-3x text-primary"></i>
-            </div>
-            <h5>3. Bid & Win</h5>
-            <p>Place bids and win amazing items</p>
+          <div class="text-center mt-4">
+            <a href="live-auction.html" class="btn btn-primary btn-custom"
+              >View All Auctions</a
+            >
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <!-- How It Works Section -->
+      <section id="how-it-works" class="py-5">
+        <div class="container">
+          <div class="text-center mb-5">
+            <h2>How It Works</h2>
+            <p class="lead">Simple steps to start bidding</p>
+          </div>
+          <div class="row">
+            <div class="col-md-4 text-center mb-4">
+              <div class="mb-3">
+                <i class="fas fa-user-plus fa-3x text-primary"></i>
+              </div>
+              <h5>1. Register</h5>
+              <p>Create your free account in seconds</p>
+            </div>
+            <div class="col-md-4 text-center mb-4">
+              <div class="mb-3">
+                <i class="fas fa-search fa-3x text-primary"></i>
+              </div>
+              <h5>2. Browse</h5>
+              <p>Find items you love in our categories</p>
+            </div>
+            <div class="col-md-4 text-center mb-4">
+              <div class="mb-3">
+                <i class="fas fa-gavel fa-3x text-primary"></i>
+              </div>
+              <h5>3. Bid & Win</h5>
+              <p>Place bids and win amazing items</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
       <div class="container">
@@ -277,6 +287,7 @@
         </div>
       </div>
     </footer>
+    <script src="spa-router.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
     <script>
