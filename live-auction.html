@@ -119,6 +119,29 @@
           <h2><span class="live-indicator"></span>Live Auctions</h2>
           <p class="lead">Don't miss out on these hot items!</p>
         </div>
+        <!-- Search and Filter -->
+        <div class="row mb-4">
+<div class="col-md-6">
+<input
+      type="text"
+      id="searchInput"
+      class="form-control"
+      placeholder="Search auctions..."
+    />
+</div>
+<div class="col-md-4">
+<select id="categoryFilter" class="form-select">
+<option value="">All Categories</option>
+<!-- Categories will be populated dynamically -->
+</select>
+</div>
+</div>
+
+
+
+
+
+
         <div class="row" id="auctionContainer">
           <!-- Auction items will be populated by JavaScript -->
         </div>
