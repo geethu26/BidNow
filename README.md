@@ -78,7 +78,7 @@ Enhance the platform with routing, interactive features, dynamic auction data re
 ---
 
 ## 📈 What’s Next
-
+- Optimize and clean code. Structure files well in the directory.
 - Build functional components.
 - Add unit tests for auction list and bidding form.
 - Implement build optimizations.
