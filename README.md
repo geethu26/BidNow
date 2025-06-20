@@ -2,7 +2,7 @@
 
 ## Sprint 1 Summary
 
-This repository contains the frontend code for **Sprint 1** of _BidNow_, a real-time auction platform. In this sprint, the team focused on laying the foundation of the project by developing UI components, defining file structures, and initiating version control workflows using git and github.
+This repository contains the frontend code for **Sprint 1** of _BidNow_, a real-time auction platform. In this sprint, the team focused on laying the foundation of the project by developing UI components, defining file structures, and initiating version control workflows using git and github. The team also worked on designing the wireframe for the main pages of the project.
 
 ## 🏁 Sprint Goal
 
@@ -89,6 +89,11 @@ Design and implement the initial static UI components (homepage, auction list, l
 ## 🔁 Story Status Screenshot
 
 > ✅ Added separately in the Sprint Document PDF with Kanban screenshot (OpenProject).
+
+---
+## 💹 Wireframe
+
+The Project wireframe is added separately as a pdf document in this repository in the sprint-1 branch.
 
 ---
 
