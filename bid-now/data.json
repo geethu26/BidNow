@@ -1,0 +1,148 @@
+{
+  "auctions": [
+    {
+      "id": 1,
+      "title": "Vintage Rolex Submariner",
+      "image": "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=400&h=300&fit=crop",
+      "currentBid": 12500,
+      "endTime": "2025-07-10T04:54:34.750Z",
+      "category": "Jewelry",
+      "bids": 23
+    },
+    {
+      "id": 2,
+      "title": "MacBook Pro 16-inch M3",
+      "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&h=300&fit=crop",
+      "currentBid": 2100,
+      "endTime": "2025-07-10T15:56:34.750Z",
+      "category": "Electronics",
+      "bids": 15
+    },
+    {
+      "id": 3,
+      "title": "BMW M3 Competition",
+      "image": "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=400&h=300&fit=crop",
+      "currentBid": 48000,
+      "endTime": "2025-06-18T17:56:34.750Z",
+      "category": "Vehicles",
+      "bids": 31
+    },
+    {
+      "id": 4,
+      "title": "Antique Persian Rug",
+      "image": "https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=400&h=300&fit=crop",
+      "currentBid": 3200,
+      "endTime": "2025-06-18T19:56:34.750Z",
+      "category": "Antiques",
+      "bids": 8
+    },
+    {
+      "id": 5,
+      "title": "Original Oil Painting",
+      "image": "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=300&fit=crop",
+      "currentBid": 1800,
+      "endTime": "2025-06-18T23:56:34.750Z",
+      "category": "Art",
+      "bids": 12
+    },
+    {
+      "id": 6,
+      "title": "Diamond Tennis Bracelet",
+      "image": "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&h=300&fit=crop",
+      "currentBid": 5600,
+      "endTime": "2025-06-19T11:56:34.750Z",
+      "category": "Jewelry",
+      "bids": 27
+    },
+    {
+      "id": 7,
+      "title": "Flagship Android Smartphone",
+      "image": "https://images.unsplash.com/photo-1721059537602-e844ccc60c94?w=500&auto=format&fit=crop",
+      "currentBid": 950,
+      "endTime": "2025-06-18T17:56:34.750Z",
+      "category": "Electronics",
+      "bids": 20
+    },
+    {
+      "id": 8,
+      "title": "Elegant Pearl Necklace",
+      "image": "https://plus.unsplash.com/premium_photo-1674255466849-b23fc5f5d3eb?w=500&auto=format&fit=crop",
+      "currentBid": 1200,
+      "endTime": "2025-06-18T18:56:34.750Z",
+      "category": "Jewelry",
+      "bids": 14
+    },
+    {
+      "id": 9,
+      "title": "Abstract Oil Painting",
+      "image": "https://plus.unsplash.com/premium_photo-1664013263421-91e3a8101259?w=500&auto=format&fit=crop",
+      "currentBid": 2500,
+      "endTime": "2025-06-19T01:56:34.750Z",
+      "category": "Art",
+      "bids": 20
+    },
+    {
+      "id": 10,
+      "title": "Gold Diamond Studded Ring",
+      "image": "https://images.unsplash.com/photo-1647581301471-9eadeab8f4e8?w=500&auto=format&fit=crop",
+      "currentBid": 750,
+      "endTime": "2025-06-18T16:56:34.750Z",
+      "category": "Jewelry",
+      "bids": 22
+    },
+    {
+      "id": 11,
+      "title": "Red Sports Coupe",
+      "image": "https://images.unsplash.com/photo-1728885717653-638408f30667?w=500&auto=format&fit=crop",
+      "currentBid": 35000,
+      "endTime": "2025-06-18T21:56:34.750Z",
+      "category": "Vehicles",
+      "bids": 24
+    }
+  ],
+  "users": [
+    {
+      "id": "2511",
+      "name": "m@1",
+      "email": "m@1",
+      "password": "Jaya@1005",
+      "role": "User"
+    },
+    {
+      "id": "86af",
+      "name": "m@2",
+      "email": "m@2",
+      "password": "Jaya@1005",
+      "role": "User"
+    }
+  ],
+  "bids": [
+    {
+      "id": "31c7",
+      "userEmail": "m@2",
+      "auctionId": 2,
+      "title": "MacBook Pro 16-inch M3",
+      "category": "Electronics",
+      "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&h=300&fit=crop",
+      "currentBid": 2150,
+      "bidAmount": 2150,
+      "endTime": "2025-07-10T15:56:34.750Z",
+      "bidTime": "2025-07-03T06:57:33.169Z"
+    }
+  ],
+  "watchlist": [
+    {
+      "id": "ad83",
+      "userEmail": "m@2",
+      "auction": {
+        "id": 1,
+        "title": "Vintage Rolex Submariner",
+        "image": "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=400&h=300&fit=crop",
+        "currentBid": 12550,
+        "endTime": "2025-07-10T04:54:34.750Z",
+        "category": "Jewelry",
+        "bids": 24
+      }
+    }
+  ]
+}
