@@ -131,7 +131,7 @@ Output will be in the /dist directory.
 
 In the upcoming **Sprint 4**, we will focus on integrating the backend and connecting the application to a real database. Key objectives include:
 
-- Design and implement **MongoDB schemas** for users, auctions, and bids.
+- Design and implement **MongoDB schemas** for users, auctions, and bids in next sprint.
 - Build secure **user authentication and login** using JWT.
 - Develop RESTful **APIs** for auction creation, bidding, and fetching results using **Node.js** and **Express**.
 - Implement **real-time bidding logic** and automatic auction closure after a session timeout.
