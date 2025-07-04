@@ -42,6 +42,7 @@ Build functional components, write unit tests for auction list and bidding form,
 ## 📂Project Directory Structure
     
     /bid-now/
+    ├── dist
     ├── node_modules/
     ├── public/
     ├── src/
@@ -110,7 +111,7 @@ Output will be in the /dist directory.
 - ✅ **BiddingForm** with React hooks to manage state
 - ✅ Configured and enforced **ESLint** rules across the project
 - ✅ Added unit tests using **Jest** and **React Testing Library**
-- ✅ Webpack configured for optimized builds and dev server
+- ✅ Webpack configured for optimized builds and dev server and dist folder was also created.
 - ✅ Project dependency management using **Yarn**
 
 ## Sprint Pod Members
