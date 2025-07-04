@@ -4,8 +4,8 @@
       "id": "1",
       "title": "Vintage Rolex Submariner",
       "image": "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=400&h=300&fit=crop",
-      "currentBid": 12500,
-      "endTime": "2025-07-10T04:54:34.750Z",
+      "currentBid": 12700,
+      "endTime": "2025-07-15T12:24:00.000Z",
       "category": "Jewelry",
       "bids": 23
     },
@@ -98,95 +98,45 @@
       "endTime": "2025-06-18T21:56:34.750Z",
       "category": "Vehicles",
       "bids": 24
+    },
+    {
+      "id": "edb2",
+      "title": "garmet",
+      "category": "garment",
+      "image": "12313",
+      "startingBid": "16000",
+      "endTime": "2026-07-10T14:50",
+      "currentBid": 16000
     }
   ],
   "users": [
     {
-      "id": "6d5c",
-      "name": "m@3",
+      "id": "6d2f",
+      "name": "mayukh",
+      "email": "g2@gmail.com",
+      "password": "Jaya@1005",
+      "role": "Admin"
+    },
+    {
+      "id": "daa7",
+      "name": "may",
       "email": "m@gmail.com",
-      "password": "Jaya@1005",
-      "role": "User"
-    },
-    {
-      "id": "2518",
-      "name": "m@4",
-      "email": "m4@gmail.com",
-      "password": "Jaya@1005",
-      "role": "User"
-    },
-    {
-      "id": "5b00",
-      "name": "ma",
-      "email": "ma@gmail.com",
-      "password": "Jaya@1005",
-      "role": "User"
-    },
-    {
-      "id": "b987",
-      "name": "ma1",
-      "email": "ma1@gmail.com",
-      "password": "Jaya@1005",
-      "role": "User"
-    },
-    {
-      "id": "af6c",
-      "name": "ma4",
-      "email": "ma4@cmail.com",
-      "password": "Jaya@1005",
-      "role": "User"
-    },
-    {
-      "id": "f656",
-      "name": "c",
-      "email": "c@gmail.com",
-      "password": "Jaya@1005",
-      "role": "User"
-    },
-    {
-      "id": "5b49",
-      "name": "j",
-      "email": "j@gmail.com",
       "password": "Jaya@1005",
       "role": "User"
     }
   ],
   "bids": [
     {
-      "id": "ed81",
-      "userEmail": "m@3",
+      "id": "a313",
+      "userEmail": "may",
       "auctionId": "1",
       "title": "Vintage Rolex Submariner",
       "category": "Jewelry",
       "image": "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=400&h=300&fit=crop",
-      "currentBid": 12550,
-      "bidAmount": 12550,
-      "endTime": "2025-07-10T04:54:34.750Z",
-      "bidTime": "2025-07-04T04:55:51.298Z"
-    },
-    {
-      "id": "293d",
-      "userEmail": "m@3",
-      "auctionId": "1",
-      "title": "Vintage Rolex Submariner",
-      "category": "Jewelry",
-      "image": "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=400&h=300&fit=crop",
-      "currentBid": 12550,
-      "bidAmount": 12550,
-      "endTime": "2025-07-10T04:54:34.750Z",
-      "bidTime": "2025-07-04T05:02:02.126Z"
-    },
-    {
-      "id": "9bf5",
-      "userEmail": "ma4",
-      "auctionId": "1",
-      "title": "Vintage Rolex Submariner",
-      "category": "Jewelry",
-      "image": "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=400&h=300&fit=crop",
-      "currentBid": 12550,
-      "bidAmount": 12550,
-      "endTime": "2025-07-10T04:54:34.750Z",
-      "bidTime": "2025-07-04T05:16:42.220Z"
+      "currentBid": 12800,
+      "bidAmount": 12800,
+      "endTime": "2025-07-15T12:24:00.000Z",
+      "bidTime": "2025-07-04T09:09:18.912Z"
     }
   ],
   "watchlist": [

@@ -15,6 +15,7 @@ const Navbar = () => {
   const handleLogout = () => {
     if (window.confirm("Are you sure you want to logout?")) {
       localStorage.removeItem("loggedInUser");
+      localStorage.removeItem("loggedInUserEmail");
       localStorage.removeItem("userRole");
       window.location.href = "/";
     }

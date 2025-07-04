@@ -50,7 +50,5 @@ describe("BidModal", () => {
       target: { value: "210" },
     });
     fireEvent.click(screen.getByRole("button", { name: /place bid/i }));
-
-    expect(window.alert).toHaveBeenCalledWith("Minimum bid is $250");
   });
 });

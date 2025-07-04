@@ -97,7 +97,7 @@ const SignupPage = () => {
       // Wait 5 seconds before redirect
       setTimeout(() => {
         navigate("/login");
-      }, 5000);
+      }, 2000);
     } catch (err) {
       console.error("Signup error:", err);
       setErrors({ global: "Signup failed. Try again later." });

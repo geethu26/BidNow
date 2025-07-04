@@ -41,7 +41,7 @@ const LoginPage = () => {
       setError("");
 
       // Redirect
-      navigate(user.role === "Admin" ? "/admin-homepage" : "/");
+      navigate(user.role === "Admin" ? "/admin" : "/");
     } catch (err) {
       console.error("Login error:", err);
       setError("Error connecting to server. Please try again.");
