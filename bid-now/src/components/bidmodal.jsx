@@ -3,10 +3,13 @@ import { Modal, Button, Form } from "react-bootstrap";
 
 const BidModal = ({ show, onClose, auction, onBidSuccess }) => {
   const [amount, setAmount] = useState("");
+  const [validationMessage, setValidationMessage] = useState("");
 
   useEffect(() => {
     if (auction) {
-      setAmount(auction.currentBid + 50);
+      const defaultBid = auction.currentBid + 50;
+      setAmount(defaultBid);
+      setValidationMessage("");
     }
   }, [auction]);
 
@@ -14,10 +17,11 @@ const BidModal = ({ show, onClose, auction, onBidSuccess }) => {
     const bidValue = parseFloat(amount);
     const minBid = auction.currentBid + 50;
     if (isNaN(bidValue) || bidValue < minBid) {
-      alert(`Minimum bid is $${minBid}`);
+      setValidationMessage(`Minimum bid is $${minBid}`);
       return;
     }
 
+    setValidationMessage("");
     onBidSuccess(bidValue);
     onClose();
   };
@@ -36,7 +40,11 @@ const BidModal = ({ show, onClose, auction, onBidSuccess }) => {
             min={auction?.currentBid + 50}
             step="10"
             onChange={(e) => setAmount(e.target.value)}
+            isInvalid={!!validationMessage}
           />
+          {validationMessage && (
+            <Form.Text className="text-danger">{validationMessage}</Form.Text>
+          )}
         </Form.Group>
       </Modal.Body>
       <Modal.Footer>

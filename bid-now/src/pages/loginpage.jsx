@@ -36,6 +36,7 @@ const LoginPage = () => {
 
       // Save session
       localStorage.setItem("loggedInUser", user.name);
+      localStorage.setItem("loggedInUserEmail", user.email);
       localStorage.setItem("userRole", user.role);
       setError("");
 

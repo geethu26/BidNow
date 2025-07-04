@@ -11,21 +11,27 @@ const WatchlistPage = () => {
   const [showBidModal, setShowBidModal] = useState(false);
   const [, forceUpdate] = useState(0);
 
+  // Redirect if not logged in and set username/email
   useEffect(() => {
-    const user = localStorage.getItem("loggedInUser");
-    if (!user) {
+    const userEmail = localStorage.getItem("loggedInUser");
+    if (!userEmail) {
       window.location.href = "/login";
     } else {
-      setUsername(user);
+      setUsername(userEmail);
     }
   }, []);
 
+  // Fetch all watchlist items, then filter client-side by userEmail
   useEffect(() => {
     if (!username) return;
-    fetch(`http://localhost:5000/watchlist?userEmail=${username}`)
+
+    fetch("http://localhost:5000/watchlist")
       .then((res) => res.json())
       .then((data) => {
-        const enriched = data.map((entry) => ({
+        const userEntries = data.filter(
+          (entry) => entry.userEmail === username
+        );
+        const enriched = userEntries.map((entry) => ({
           ...entry,
           auction: {
             ...entry.auction,
@@ -33,11 +39,13 @@ const WatchlistPage = () => {
           },
         }));
         setWatchlist(enriched);
-      });
+      })
+      .catch(console.error);
   }, [username]);
 
+  // Force update every second for countdown
   useEffect(() => {
-    const interval = setInterval(() => forceUpdate((val) => val + 1), 1000);
+    const interval = setInterval(() => forceUpdate((v) => v + 1), 1000);
     return () => clearInterval(interval);
   }, []);
 

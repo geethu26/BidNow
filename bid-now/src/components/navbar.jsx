@@ -5,20 +5,10 @@ const Navbar = () => {
   const [username, setUsername] = useState("");
 
   useEffect(() => {
-    const userEmail = localStorage.getItem("loggedInUser");
-    if (userEmail) {
-      fetch(
-        `http://localhost:5000/users?email=${encodeURIComponent(userEmail)}`
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.length > 0) {
-            setUsername(data[0].name); // set name from API
-          }
-        })
-        .catch((err) => {
-          console.error("Failed to fetch user", err);
-        });
+    const storedName = localStorage.getItem("loggedInUser");
+    if (storedName) {
+      // Optional: Verify against /users if you want additional data
+      setUsername(storedName);
     }
   }, []);
 
@@ -44,32 +34,23 @@ const Navbar = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
+
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
-              <Link className="nav-link" to="/">
-                Home
-              </Link>
+              <Link className="nav-link" to="/">Home</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/live-auction">
-                Live Auctions
-              </Link>
+              <Link className="nav-link" to="/live-auction">Live Auctions</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#categories">
-                Categories
-              </a>
+              <a className="nav-link" href="#categories">Categories</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#how-it-works">
-                How It Works
-              </a>
+              <a className="nav-link" href="#how-it-works">How It Works</a>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/contact">
-                Contact
-              </Link>
+              <Link className="nav-link" to="/contact">Contact</Link>
             </li>
           </ul>
 
@@ -84,10 +65,7 @@ const Navbar = () => {
               >
                 <i className="fas fa-user me-1"></i> {username}
               </button>
-              <ul
-                className="dropdown-menu dropdown-menu-end"
-                aria-labelledby="userDropdown"
-              >
+              <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                 <li>
                   <Link className="dropdown-item" to="/profile">
                     <i className="fas fa-user me-1"></i> Profile
@@ -103,14 +81,9 @@ const Navbar = () => {
                     <i className="fas fa-heart me-1"></i> Watchlist
                   </Link>
                 </li>
+                <li><hr className="dropdown-divider" /></li>
                 <li>
-                  <hr className="dropdown-divider" />
-                </li>
-                <li>
-                  <button
-                    className="dropdown-item text-danger"
-                    onClick={handleLogout}
-                  >
+                  <button className="dropdown-item text-danger" onClick={handleLogout}>
                     <i className="fas fa-sign-out-alt me-1"></i> Logout
                   </button>
                 </li>
@@ -118,12 +91,8 @@ const Navbar = () => {
             </div>
           ) : (
             <div className="d-flex">
-              <Link to="/login" className="btn btn-outline-primary me-2">
-                Login
-              </Link>
-              <Link to="/signup" className="btn btn-primary">
-                Register
-              </Link>
+              <Link to="/login" className="btn btn-outline-primary me-2">Login</Link>
+              <Link to="/signup" className="btn btn-primary">Register</Link>
             </div>
           )}
         </div>

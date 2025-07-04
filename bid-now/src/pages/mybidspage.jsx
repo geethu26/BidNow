@@ -11,21 +11,26 @@ const MyBidsPage = () => {
   const [search, setSearch] = useState("");
   const [, forceUpdate] = useState(0);
 
+  // Redirect if not logged in and set username/email
   useEffect(() => {
-    const user = localStorage.getItem("loggedInUser");
-    if (!user) {
+    const userEmail = localStorage.getItem("loggedInUser");
+    if (!userEmail) {
       navigate("/login");
     } else {
-      setUsername(user);
+      setUsername(userEmail);
     }
   }, [navigate]);
 
+  // Fetch all bids, then filter client side by username/email
   useEffect(() => {
     if (!username) return;
-    fetch(`http://localhost:5000/bids?userEmail=${username}`)
+
+    fetch(`http://localhost:5000/bids`)
       .then((res) => res.json())
       .then((data) => {
-        const enriched = data.map((bid) => ({
+        // Filter bids for logged in user
+        const userBids = data.filter((bid) => bid.userEmail === username);
+        const enriched = userBids.map((bid) => ({
           ...bid,
           bidTime: new Date(bid.bidTime),
           endTime: new Date(bid.endTime),
@@ -35,13 +40,15 @@ const MyBidsPage = () => {
       .catch((err) => console.error("Failed to fetch bids:", err));
   }, [username]);
 
+  // Force update every second for countdown
   useEffect(() => {
     const interval = setInterval(() => {
-      forceUpdate((val) => val + 1);
+      forceUpdate((v) => v + 1);
     }, 1000);
     return () => clearInterval(interval);
   }, []);
 
+  // Delete bid by id
   const clearBid = async (bidId) => {
     await fetch(`http://localhost:5000/bids/${bidId}`, {
       method: "DELETE",
@@ -49,6 +56,7 @@ const MyBidsPage = () => {
     setBids((prev) => prev.filter((b) => b.id !== bidId));
   };
 
+  // Delete all bids
   const clearAllBids = async () => {
     if (window.confirm("Are you sure you want to clear all bids?")) {
       await Promise.all(
@@ -62,6 +70,7 @@ const MyBidsPage = () => {
     }
   };
 
+  // Determine bid status (won, lost, winning, outbid)
   const updateBidStatus = (bid) => {
     const now = new Date();
     const auctionEnded = bid.endTime <= now;
@@ -71,6 +80,7 @@ const MyBidsPage = () => {
     return bid.bidAmount >= bid.currentBid ? "winning" : "outbid";
   };
 
+  // Format countdown timer
   const formatTimeRemaining = (endTime) => {
     const now = new Date();
     const diff = endTime - now;
@@ -83,6 +93,7 @@ const MyBidsPage = () => {
     return `${h}:${m}:${s}`;
   };
 
+  // Filter bids by status filter and search term
   const filteredBids = bids
     .filter((bid) => {
       const status = updateBidStatus(bid);
@@ -100,6 +111,7 @@ const MyBidsPage = () => {
       );
     });
 
+  // Statistics for dashboard cards
   const stats = {
     total: bids.length,
     active: bids.filter((bid) =>
@@ -110,6 +122,8 @@ const MyBidsPage = () => {
       .filter((bid) => updateBidStatus(bid) === "won")
       .reduce((acc, b) => acc + b.bidAmount, 0),
   };
+
+  // Components StatCard and BidCard remain the same as your original code...
 
   return (
     <>

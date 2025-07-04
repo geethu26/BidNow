@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import BidModal from "../components/bidmodal";
-import userImage from "../img/user.png"; // Default local user image
+import userImage from "../img/user.png"; // Default image
 
 const UserProfile = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [user, setUser] = useState({
     name: "",
     email: "",
-    image: userImage, // Default image initially
+    image: userImage,
   });
 
   const [bids, setBids] = useState([]);
@@ -19,40 +19,58 @@ const UserProfile = () => {
   const [selectedAuction, setSelectedAuction] = useState(null);
 
   useEffect(() => {
-    const loggedInUserEmail = localStorage.getItem("loggedInUser");
-    if (!loggedInUserEmail) {
+    const user = localStorage.getItem("loggedInUser");
+    const userEmail = localStorage.getItem("loggedInUserEmail")
+    if (!user) {
       window.location.href = "/login";
       return;
     }
 
-    // Fetch user info and merge with default image
-    fetch(`http://localhost:5000/users?email=${loggedInUserEmail}`)
+    // Fetch user info
+    fetch("http://localhost:5000/users")
       .then((res) => res.json())
       .then((users) => {
-        if (users.length > 0) {
-          setUser((prevUser) => ({
-            ...prevUser,
-            ...users[0],
-            image: users[0].image || prevUser.image, // keep default if missing
+        console.log(userEmail)
+        const matchedUser = users.find(
+          (u) => u.email.toLowerCase() === userEmail.toLowerCase()
+        );
+        if (matchedUser) {
+          console.log(matchedUser)
+          setUser((prev) => ({
+            ...prev,
+            ...matchedUser,
+            image: matchedUser.image || prev.image,
           }));
+        } else {
+          console.warn("No user matched the given email.");
         }
       })
-      .catch(console.error);
+      .catch((err) => {
+        console.error("Error fetching user info:", err);
+      });
 
-    // Fetch bids for user
-    fetch(`http://localhost:5000/bids?userEmail=${loggedInUserEmail}`)
+    // Fetch bids for this user
+    fetch(
+      `http://localhost:5000/bids?userEmail=${encodeURIComponent(user)}`
+    )
       .then((res) => res.json())
-      .then((bidsData) => {
-        const enrichedBids = bidsData.map((bid) => ({
+      .then((data) => {
+        const enriched = data.map((bid) => ({
           ...bid,
           endTime: new Date(bid.endTime),
         }));
-        setBids(enrichedBids);
+        setBids(enriched);
       })
-      .catch(console.error);
+      .catch((err) => {
+        console.error("Error fetching bids:", err);
+      });
 
-    // Fetch watchlist for user
-    fetch(`http://localhost:5000/watchlist?userEmail=${loggedInUserEmail}`)
+    // Fetch watchlist for this user
+    fetch(
+      `http://localhost:5000/watchlist?userEmail=${encodeURIComponent(
+        user
+      )}`
+    )
       .then((res) => res.json())
       .then((data) => {
         const enriched = data.map((entry) => ({
@@ -64,25 +82,26 @@ const UserProfile = () => {
         }));
         setWatchlist(enriched);
       })
-      .catch(console.error);
+      .catch((err) => {
+        console.error("Error fetching watchlist:", err);
+      });
 
-    // Dummy recent activity
+    // Mock recent activity
     setRecentActivity([
       "Bid placed on Vintage Rolex Submariner",
-      "Added Vintage Rolex Submariner to watchlist",
-      "Updated profile details",
+      "Added BMW M3 to watchlist",
+      "Updated profile picture",
     ]);
   }, []);
 
   const handleEditToggle = () => setIsEditing(!isEditing);
 
-  const handleInputChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
-  };
+  const handleInputChange = (e) =>
+    setUser((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
   const handleSave = () => {
     setIsEditing(false);
-    // Save user changes to backend if needed
+    // TODO: Implement user update logic if desired
   };
 
   const openBidModal = (auction) => {
@@ -98,13 +117,14 @@ const UserProfile = () => {
       setWatchlist((prev) => prev.filter((entry) => entry.id !== id));
     } catch (err) {
       console.error(err);
-      alert("Failed to remove item from watchlist.");
+      alert("Failed to remove from watchlist.");
     }
   };
 
-  const formatCountdown = (end) => {
-    if (!end) return "N/A";
-    const diff = end - new Date();
+  const formatCountdown = (endTime) => {
+    if (!(endTime instanceof Date)) return "N/A";
+    const now = new Date();
+    const diff = endTime - now;
     if (diff <= 0) return "ENDED";
     const h = String(Math.floor(diff / 3600000)).padStart(2, "0");
     const m = String(Math.floor((diff % 3600000) / 60000)).padStart(2, "0");
@@ -114,10 +134,10 @@ const UserProfile = () => {
 
   return (
     <>
-      <Navbar username={user.name || user.email} />
+      <Navbar username={user.name || "User"} />
 
       <div className="container mt-5 mb-5">
-        {/* Profile Card */}
+        {/* Profile */}
         <div className="card shadow-sm">
           <div className="card-body text-center">
             <img
@@ -141,6 +161,7 @@ const UserProfile = () => {
                   className="form-control mb-3"
                   value={user.email}
                   onChange={handleInputChange}
+                  disabled // usually you don't want to edit email
                 />
                 <button className="btn btn-success me-2" onClick={handleSave}>
                   Save
@@ -154,7 +175,7 @@ const UserProfile = () => {
               </>
             ) : (
               <>
-                <h4>{user.name || "User"}</h4>
+                <h4>{user.name}</h4>
                 <p>{user.email}</p>
                 <button
                   className="btn btn-outline-primary"
@@ -167,43 +188,40 @@ const UserProfile = () => {
           </div>
         </div>
 
-        {/* Bids Section */}
+        {/* Bids */}
         <h5 className="mt-5">Your Bids</h5>
         <div className="row">
-          {bids.length > 0 ? (
+          {bids.length ? (
             bids.map((bid) => {
               const countdown = formatCountdown(bid.endTime);
-
               return (
                 <div className="col-md-6 col-lg-4 mb-4" key={bid.id}>
-                  <div className="card h-100 shadow-sm auction-card visible">
+                  <div className="card h-100 shadow-sm">
                     <img
                       src={bid.image}
-                      className="card-img-top"
                       alt={bid.title}
-                      style={{ height: "200px", objectFit: "cover" }}
+                      className="card-img-top"
+                      style={{ height: 200, objectFit: "cover" }}
                     />
                     <div className="card-body">
-                      <h5 className="card-title">{bid.title}</h5>
-                      <span className="badge bg-secondary mb-2">
-                        {bid.category}
-                      </span>
-                      <div className="mb-2 text-success fw-bold">
+                      <h5>{bid.title}</h5>
+                      <span className="badge bg-secondary">{bid.category}</span>
+                      <div className="text-success fw-bold my-2">
                         Current Bid: ${bid.currentBid.toLocaleString()}
                       </div>
                       <div
-                        className={
+                        className={`fw-bold ${
                           countdown === "ENDED" ? "text-danger" : "text-warning"
-                        }
+                        }`}
                       >
                         Time Left: {countdown}
                       </div>
-                      <div className="mb-2">
+                      <div className="mt-2">
                         <strong>Your Bid:</strong> $
                         {bid.bidAmount.toLocaleString()}
                       </div>
-                      <div className="d-grid gap-2 mt-3">
-                        {countdown !== "ENDED" && (
+                      {countdown !== "ENDED" && (
+                        <div className="d-grid gap-2 mt-3">
                           <button
                             className="btn btn-primary btn-sm"
                             onClick={() =>
@@ -219,8 +237,8 @@ const UserProfile = () => {
                           >
                             <i className="fas fa-gavel"></i> Place Bid
                           </button>
-                        )}
-                      </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -231,35 +249,34 @@ const UserProfile = () => {
           )}
         </div>
 
-        {/* Watchlist Section */}
+        {/* Watchlist */}
         <h5 className="mt-5">Watchlist</h5>
         <div className="row">
-          {watchlist.length > 0 ? (
+          {watchlist.length ? (
             watchlist.map((entry) => {
               const { auction } = entry;
               const countdown = formatCountdown(auction.endTime);
-
               return (
                 <div className="col-md-6 col-lg-4 mb-4" key={entry.id}>
-                  <div className="card h-100 shadow-sm auction-card visible">
+                  <div className="card h-100 shadow-sm">
                     <img
                       src={auction.image}
-                      className="card-img-top"
                       alt={auction.title}
-                      style={{ height: "200px", objectFit: "cover" }}
+                      className="card-img-top"
+                      style={{ height: 200, objectFit: "cover" }}
                     />
                     <div className="card-body">
-                      <h5 className="card-title">{auction.title}</h5>
-                      <span className="badge bg-secondary mb-2">
+                      <h5>{auction.title}</h5>
+                      <span className="badge bg-secondary">
                         {auction.category}
                       </span>
-                      <div className="mb-2 text-success fw-bold">
+                      <div className="text-success fw-bold my-2">
                         Current Bid: ${auction.currentBid.toLocaleString()}
                       </div>
                       <div
-                        className={
+                        className={`fw-bold ${
                           countdown === "ENDED" ? "text-danger" : "text-warning"
-                        }
+                        }`}
                       >
                         Time Left: {countdown}
                       </div>
@@ -292,22 +309,18 @@ const UserProfile = () => {
         {/* Recent Activity */}
         <h5 className="mt-5">Recent Activity</h5>
         <ul className="list-group">
-          {recentActivity.length > 0 ? (
-            recentActivity.map((activity, i) => (
-              <li className="list-group-item" key={i}>
-                {activity}
-              </li>
-            ))
-          ) : (
-            <li className="list-group-item text-muted">No recent activity.</li>
-          )}
+          {recentActivity.map((activity, idx) => (
+            <li key={idx} className="list-group-item">
+              {activity}
+            </li>
+          ))}
         </ul>
       </div>
 
       <BidModal
         show={showBidModal}
-        auction={selectedAuction}
         onClose={() => setShowBidModal(false)}
+        auction={selectedAuction}
         onBidSuccess={() => setShowBidModal(false)}
       />
 

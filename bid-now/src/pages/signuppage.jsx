@@ -1,49 +1,106 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 const SignupPage = () => {
   const navigate = useNavigate();
+
   const [form, setForm] = useState({
     name: "",
     email: "",
     password: "",
+    confirmPassword: "",
     role: "",
   });
-  const [showPassword, setShowPassword] = useState(false);
 
-  const validatePassword = (pw) => {
-    return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#]).{6,}$/.test(pw);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [touched, setTouched] = useState({}); // Track if user has interacted with each field
+  const [successMessage, setSuccessMessage] = useState(""); // <-- New success message state
+
+  const validateEmail = (email) =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+
+  const validatePassword = (pw) =>
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#]).{6,}$/.test(pw);
+
+  const validateForm = (updatedForm) => {
+    const { name, email, password, confirmPassword, role } = updatedForm;
+    const newErrors = {};
+
+    if (!name.trim()) newErrors.name = "Name is required";
+    if (!email.trim()) newErrors.email = "Email is required";
+    else if (!validateEmail(email)) newErrors.email = "Invalid email format";
+    if (!password) newErrors.password = "Password is required";
+    else if (!validatePassword(password))
+      newErrors.password =
+        "Must have 6+ chars, uppercase, lowercase, number, symbol";
+    if (!confirmPassword) newErrors.confirmPassword = "Please confirm password";
+    else if (confirmPassword !== password)
+      newErrors.confirmPassword = "Passwords do not match";
+    if (!role) newErrors.role = "Please select a role";
+
+    return newErrors;
+  };
+
+  useEffect(() => {
+    setErrors(validateForm(form));
+  }, [form]);
+
+  const handleBlur = (field) => {
+    setTouched((prev) => ({ ...prev, [field]: true }));
+  };
+
+  const handleChange = (field, value) => {
+    setForm((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { name, email, password, role } = form;
 
-    if (!validatePassword(password)) {
-      return alert(
-        "Password must be at least 6 characters long and include:\n- 1 uppercase letter\n- 1 lowercase letter\n- 1 number\n- 1 special character"
-      );
-    }
+    setTouched({
+      name: true,
+      email: true, // fixed typo here: was userEmail
+      password: true,
+      confirmPassword: true,
+      role: true,
+    });
+
+    const currentErrors = validateForm(form);
+    setErrors(currentErrors);
+
+    if (Object.keys(currentErrors).length > 0) return;
 
     try {
-      const res = await fetch(`http://localhost:5000/users?email=${email}`);
+      const res = await fetch(
+        `http://localhost:5000/users?email=${form.email}`
+      );
       const existingUsers = await res.json();
 
       if (existingUsers.length > 0) {
-        return alert("Email already registered");
+        setErrors({ email: "Email already registered" });
+        return;
       }
 
       await fetch("http://localhost:5000/users", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, password, role }),
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          password: form.password,
+          role: form.role,
+        }),
       });
 
-      alert("Signup successful! Redirecting to login...");
-      setTimeout(() => navigate("/login"), 1000);
+      setSuccessMessage("Signup successful! Redirecting to login...");
+      // Wait 5 seconds before redirect
+      setTimeout(() => {
+        navigate("/login");
+      }, 5000);
     } catch (err) {
       console.error("Signup error:", err);
-      alert("Something went wrong while signing up.");
+      setErrors({ global: "Signup failed. Try again later." });
     }
   };
 
@@ -57,60 +114,139 @@ const SignupPage = () => {
         <div className="col-md-6 right-pane" style={rightPaneStyle}>
           <div className="w-75">
             <h2 className="text-center mb-4">Signup for BidNow</h2>
-            <form onSubmit={handleSubmit}>
+
+            {/* Success message */}
+            {successMessage && (
+              <div className="alert alert-success text-center">
+                {successMessage}
+              </div>
+            )}
+
+            {errors.global && (
+              <div className="alert alert-danger">{errors.global}</div>
+            )}
+
+            <form onSubmit={handleSubmit} noValidate>
+              {/* Name */}
               <div className="mb-3">
                 <label className="form-label">Name</label>
                 <input
                   type="text"
-                  className="form-control"
-                  required
+                  className={`form-control ${
+                    touched.name && errors.name ? "is-invalid" : ""
+                  }`}
                   value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  onChange={(e) => handleChange("name", e.target.value)}
+                  onBlur={() => handleBlur("name")}
+                  disabled={!!successMessage} // disable input when success msg showing
                 />
+                {touched.name && errors.name && (
+                  <div className="invalid-feedback">{errors.name}</div>
+                )}
               </div>
+
+              {/* Email */}
               <div className="mb-3">
                 <label className="form-label">Email</label>
                 <input
                   type="email"
-                  className="form-control"
-                  required
+                  className={`form-control ${
+                    touched.email && errors.email ? "is-invalid" : ""
+                  }`}
                   value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  onChange={(e) => handleChange("email", e.target.value)}
+                  onBlur={() => handleBlur("email")}
+                  disabled={!!successMessage}
                 />
+                {touched.email && errors.email && (
+                  <div className="invalid-feedback">{errors.email}</div>
+                )}
               </div>
+
+              {/* Password */}
               <div className="mb-3 position-relative">
                 <label className="form-label">Password</label>
                 <input
                   type={showPassword ? "text" : "password"}
-                  className="form-control"
-                  required
+                  className={`form-control ${
+                    touched.password && errors.password ? "is-invalid" : ""
+                  }`}
                   value={form.password}
-                  onChange={(e) =>
-                    setForm({ ...form, password: e.target.value })
-                  }
+                  onChange={(e) => handleChange("password", e.target.value)}
+                  onBlur={() => handleBlur("password")}
+                  disabled={!!successMessage}
                 />
                 <span
                   style={toggleStyle}
                   onClick={() => setShowPassword(!showPassword)}
-                  title={showPassword ? "Hide" : "Show"}
                 >
                   {showPassword ? "🙈" : "👁️"}
                 </span>
+                {touched.password && errors.password && (
+                  <div className="invalid-feedback d-block">
+                    {errors.password}
+                  </div>
+                )}
               </div>
+
+              {/* Confirm Password */}
+              <div className="mb-3 position-relative">
+                <label className="form-label">Confirm Password</label>
+                <input
+                  type={showConfirmPassword ? "text" : "password"}
+                  className={`form-control ${
+                    touched.confirmPassword && errors.confirmPassword
+                      ? "is-invalid"
+                      : ""
+                  }`}
+                  value={form.confirmPassword}
+                  onChange={(e) =>
+                    handleChange("confirmPassword", e.target.value)
+                  }
+                  onBlur={() => handleBlur("confirmPassword")}
+                  disabled={!!successMessage}
+                />
+                <span
+                  style={{ ...toggleStyle, top: "38px" }}
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                >
+                  {showConfirmPassword ? "🙈" : "👁️"}
+                </span>
+                {touched.confirmPassword && errors.confirmPassword && (
+                  <div className="invalid-feedback d-block">
+                    {errors.confirmPassword}
+                  </div>
+                )}
+              </div>
+
+              {/* Role */}
               <div className="mb-3">
                 <label className="form-label">Role</label>
                 <select
-                  className="form-select"
-                  required
+                  className={`form-select ${
+                    touched.role && errors.role ? "is-invalid" : ""
+                  }`}
                   value={form.role}
-                  onChange={(e) => setForm({ ...form, role: e.target.value })}
+                  onChange={(e) => handleChange("role", e.target.value)}
+                  onBlur={() => handleBlur("role")}
+                  disabled={!!successMessage}
                 >
                   <option value="">Select Role</option>
                   <option value="Admin">Admin</option>
                   <option value="User">User</option>
                 </select>
+                {touched.role && errors.role && (
+                  <div className="invalid-feedback">{errors.role}</div>
+                )}
               </div>
-              <button className="btn btn-primary w-100">Sign Up</button>
+
+              <button
+                className="btn btn-primary w-100"
+                type="submit"
+                disabled={!!successMessage}
+              >
+                Sign Up
+              </button>
               <p className="text-center mt-3">
                 Already have an account? <Link to="/login">Login</Link>
               </p>
