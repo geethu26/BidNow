@@ -74,9 +74,12 @@ Follow the steps below to set up and run the project locally:
 
 #### 1. Clone the Repository
 
-    git clone https://github.com/your-username/bid-now.git
+    git clone https://github.com/geethu26/BidNow.git
     cd bid-now
-- Replace your-username with your actual GitHub username or organization.
+    git fetch origin
+    git checkout sprint-3
+
+- make sure you are in the branch sprint-3 in order to run the commands given below
 
 #### 2. Install Yarn (if not installed)
     

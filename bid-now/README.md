@@ -74,9 +74,12 @@ Follow the steps below to set up and run the project locally:
 
 #### 1. Clone the Repository
 
-    git clone https://github.com/your-username/bid-now.git
+    git clone https://github.com/geethu26/BidNow.git
     cd bid-now
-- Replace your-username with your actual GitHub username or organization.
+    git fetch origin
+    git checkout sprint-3
+
+- make sure you are in the branch sprint-3 in order to run the commands given below
 
 #### 2. Install Yarn (if not installed)
     
@@ -111,7 +114,7 @@ Output will be in the /dist directory.
 - ✅ **BiddingForm** with React hooks to manage state
 - ✅ Configured and enforced **ESLint** rules across the project
 - ✅ Added unit tests using **Jest** and **React Testing Library**
-- ✅ Webpack configured for optimized builds and dev server and dist folder was also created.
+- ✅ Webpack configured for optimized builds and dev server. Dist folder was also created.
 - ✅ Project dependency management using **Yarn**
 
 ## Sprint Pod Members
@@ -131,7 +134,7 @@ Output will be in the /dist directory.
 
 In the upcoming **Sprint 4**, we will focus on integrating the backend and connecting the application to a real database. Key objectives include:
 
-- Design and implement **MongoDB schemas** for users, auctions, and bids.
+- Design and implement **MongoDB schemas** for users, auctions, and bids in next sprint.
 - Build secure **user authentication and login** using JWT.
 - Develop RESTful **APIs** for auction creation, bidding, and fetching results using **Node.js** and **Express**.
 - Implement **real-time bidding logic** and automatic auction closure after a session timeout.
